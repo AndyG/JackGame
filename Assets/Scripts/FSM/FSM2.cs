@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FSM2 : MonoBehaviour
+public class FSM2
 {
   //Base class for all states, only the required methods need to be overriden
   public class StateBase
@@ -25,7 +25,9 @@ public class FSM2 : MonoBehaviour
   {
     //Exit the current state
     if (currentState != null)
+    {
       currentState.Exit();
+    }
 
     //Change to the new state
     currentState = _newState;
@@ -57,4 +59,13 @@ public class FSM2 : MonoBehaviour
   {
     if (ChangeStateBase(_newState)) _newState.Enter(p0, p1, p2);
   }
+
+  public void UpdateCurrentState()
+  {
+    if (currentState != null)
+    {
+      currentState.Update();
+    }
+  }
+
 }

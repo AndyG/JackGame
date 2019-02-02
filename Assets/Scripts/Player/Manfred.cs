@@ -6,8 +6,7 @@ using UnityEngine;
 public class Manfred : MonoBehaviour
 {
 
-  private State state;
-  private Animator animator;
+  public Animator animator;
   private FSM2 fsm;
 
   [SerializeField]
@@ -17,82 +16,22 @@ public class Manfred : MonoBehaviour
 
   private bool ignoreAnimationEventsThisFrame;
 
+  public FSM2.State stateIdle;
+  public FSM2.State stateCrouch;
+
   void Start()
   {
-    this.animator = GetComponent<Animator>();
-    this.state = State.STANDING;
+    animator = GetComponent<Animator>();
+    fsm = new FSM2();
+    stateIdle = new ManfredIdle(this);
+    stateCrouch = new ManfredCrouch(this);
+    fsm.ChangeState(stateIdle);
   }
 
   void Update()
   {
     ignoreAnimationEventsThisFrame = false;
-    switch (state)
-    {
-      case State.STANDING:
-        UpdateStanding();
-        break;
-      case State.PARRY_START:
-        UpdateParryStart();
-        break;
-      case State.PARRY_ACTIVE:
-        UpdateParryActive();
-        break;
-      default:
-        Debug.Log("no handler for state: " + state);
-        break;
-    }
-  }
-
-  public void OnIdle()
-  {
-    SetState(State.STANDING);
-    animator.SetTrigger("Idle");
-  }
-
-  public void OnParryActive()
-  {
-    SetState(State.PARRY_ACTIVE);
-  }
-
-  private void UpdateStanding()
-  {
-    if (Input.GetKeyDown(KeyCode.P))
-    {
-      SetState(State.PARRY_START);
-      animator.SetTrigger("ParryStart");
-      ignoreAnimationEventsThisFrame = true;
-    }
-  }
-
-  private void UpdateParryStart()
-  {
-    parryTime = 0f;
-    //no-op
-  }
-
-  private void UpdateParryActive()
-  {
-    parryTime += Time.deltaTime;
-    if (parryTime >= parryDuration || !Input.GetKey(KeyCode.P))
-    {
-      SetState(State.PARRY_RETRACT);
-      animator.SetTrigger("ParryRetract");
-      return;
-    }
-  }
-
-  private void SetState(State state)
-  {
-    Debug.Log("SetState: " + state);
-    this.state = state;
-  }
-
-  private enum State
-  {
-    STANDING,
-    PARRY_START,
-    PARRY_ACTIVE,
-    PARRY_RETRACT,
-    PARRY_CATCH
+    // update current state
+    fsm.UpdateCurrentState();
   }
 }
