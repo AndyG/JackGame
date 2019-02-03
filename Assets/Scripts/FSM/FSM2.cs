@@ -11,6 +11,7 @@ public class FSM2
 
     public virtual void Update() { }
     public virtual void Exit() { }
+    public virtual void OnMessage(string message) { }
   };
 
   public class State : StateBase { public virtual void Enter() { } }

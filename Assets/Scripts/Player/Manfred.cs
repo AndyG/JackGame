@@ -16,6 +16,9 @@ public class Manfred : MonoBehaviour
 
   private bool ignoreAnimationEventsThisFrame;
 
+  public FSM2.State stateAttack1;
+  public FSM2.State stateAttack2;
+  public FSM2.State stateAttack3;
   public FSM2.State stateIdle;
   public FSM2.State stateCrouch;
 
@@ -23,6 +26,9 @@ public class Manfred : MonoBehaviour
   {
     animator = GetComponent<Animator>();
     fsm = new FSM2();
+    stateAttack1 = new ManfredAttack1(this);
+    stateAttack2 = new ManfredAttack2(this);
+    stateAttack3 = new ManfredAttack3(this);
     stateIdle = new ManfredIdle(this);
     stateCrouch = new ManfredCrouch(this);
     fsm.ChangeState(stateIdle);
@@ -33,5 +39,13 @@ public class Manfred : MonoBehaviour
     ignoreAnimationEventsThisFrame = false;
     // update current state
     fsm.UpdateCurrentState();
+  }
+
+  public void OnMessage(string message)
+  {
+    if (fsm.currentState != null)
+    {
+      fsm.currentState.OnMessage(message);
+    }
   }
 }

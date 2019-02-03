@@ -3090,6 +3090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 746ebc2d7c45e48fda23b9112ed61082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   parryDuration: 2
 --- !u!1001 &5785739327783145905
 PrefabInstance:
@@ -3157,6 +3158,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5785739327105106409, guid: 8a6f138910f32416aa3b3ed9b87ee251,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5785739327105106409, guid: 8a6f138910f32416aa3b3ed9b87ee251,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5785739327105106409, guid: 8a6f138910f32416aa3b3ed9b87ee251,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a6f138910f32416aa3b3ed9b87ee251, type: 3}
