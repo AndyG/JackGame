@@ -24,10 +24,6 @@ public class ManfredAttack3 : FSM2.State
     manfred.animator.SetBool("Attack3", false);
   }
 
-  public override void Update()
-  {
-  }
-
   public override void OnMessage(string message)
   {
     if (message.Equals("EndAttack3"))

@@ -7,12 +7,9 @@ public class Manfred : MonoBehaviour
 {
 
   public Animator animator;
+  public PlayerInput playerInput;
+
   private FSM2 fsm;
-
-  [SerializeField]
-  private float parryDuration;
-
-  private float parryTime = 0f;
 
   private bool ignoreAnimationEventsThisFrame;
 
@@ -25,7 +22,10 @@ public class Manfred : MonoBehaviour
   void Start()
   {
     animator = GetComponent<Animator>();
+    playerInput = GetComponent<PlayerInput>();
+
     fsm = new FSM2();
+
     stateAttack1 = new ManfredAttack1(this);
     stateAttack2 = new ManfredAttack2(this);
     stateAttack3 = new ManfredAttack3(this);

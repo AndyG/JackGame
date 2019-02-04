@@ -30,7 +30,9 @@ public class ManfredAttack1 : FSM2.State
 
   public override void Update()
   {
-    if (Input.GetKeyDown(KeyCode.S))
+    manfred.playerInput.GatherInput();
+
+    if (manfred.playerInput.GetDidPressAttack())
     {
       if (!allowNextAttack)
       {
@@ -41,18 +43,6 @@ public class ManfredAttack1 : FSM2.State
         this.fsm.ChangeState(manfred.stateAttack2);
       }
       return;
-    }
-
-    if (Input.GetKeyDown(KeyCode.T))
-    {
-      if (!allowNextAttack)
-      {
-        lockout = true;
-      }
-      else if (!lockout)
-      {
-        this.fsm.ChangeState(manfred.stateAttack3);
-      }
     }
   }
 

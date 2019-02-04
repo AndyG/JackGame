@@ -32,13 +32,16 @@ public class ManfredIdle : FSM2.State
   public override void Update()
   {
     timeInState += Time.deltaTime;
+
+    manfred.playerInput.GatherInput();
+
     if (Input.GetKeyDown(KeyCode.P))
     {
       this.fsm.ChangeState(manfred.stateCrouch);
       return;
     }
 
-    if (timeInState >= attackCooldown && Input.GetKeyDown(KeyCode.S))
+    if (timeInState >= attackCooldown && manfred.playerInput.GetDidPressAttack())
     {
       this.fsm.ChangeState(manfred.stateAttack1);
     }

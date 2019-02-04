@@ -30,7 +30,9 @@ public class ManfredAttack2 : FSM2.State
 
   public override void Update()
   {
-    if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.T))
+    manfred.playerInput.GatherInput();
+
+    if (manfred.playerInput.GetDidPressAttack())
     {
       if (!allowNextAttack)
       {
