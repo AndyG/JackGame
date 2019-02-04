@@ -28,14 +28,13 @@ public class ManfredIdle : FSM2.State
     manfred.animator.SetBool("Idle", false);
   }
 
-  // Update is called once per frame
   public override void Update()
   {
     timeInState += Time.deltaTime;
 
     manfred.playerInput.GatherInput();
 
-    if (Input.GetKeyDown(KeyCode.P))
+    if (manfred.playerInput.GetVerticalInput() < 0)
     {
       this.fsm.ChangeState(manfred.stateCrouch);
       return;

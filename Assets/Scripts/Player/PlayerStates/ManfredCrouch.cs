@@ -18,11 +18,20 @@ public class ManfredCrouch : FSM2.State
     manfred.animator.SetBool("IsCrouching", true);
   }
 
-  // Update is called once per frame
+  public override void Exit()
+  {
+    Debug.Log("Exit Crouch");
+    manfred.animator.SetBool("IsCrouching", false);
+  }
+
   public override void Update()
   {
-    if (Input.GetKeyUp(KeyCode.P))
+    manfred.playerInput.GatherInput();
+
+    // Player is no longer holding crouch.
+    if (manfred.playerInput.GetVerticalInput() >= 0f)
     {
+      Debug.Log("input: " + manfred.playerInput.GetVerticalInput());
       this.fsm.ChangeState(manfred.stateIdle);
     }
   }
