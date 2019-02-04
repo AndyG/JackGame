@@ -2825,7 +2825,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   playerInput: {fileID: 0}
   controller: {fileID: 0}
-  gravity: -2
+  gravity: -40
   velocity: {x: 0, y: 0}
   horizSpeed: 5
 --- !u!114 &949882971
