@@ -8,6 +8,11 @@ public class Manfred : MonoBehaviour
 
   public Animator animator;
   public PlayerInput playerInput;
+  public PlayerController controller;
+
+  public float gravity;
+  public Vector2 velocity = new Vector2(0f, 0f);
+  public float horizSpeed = 0.5f;
 
   private FSM2 fsm;
 
@@ -23,6 +28,7 @@ public class Manfred : MonoBehaviour
   {
     animator = GetComponent<Animator>();
     playerInput = GetComponent<PlayerInput>();
+    controller = GetComponent<PlayerController>();
 
     fsm = new FSM2();
 

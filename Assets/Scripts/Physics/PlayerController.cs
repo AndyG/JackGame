@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LagueController2D : RaycastController
+public class PlayerController : RaycastController
 {
   [SerializeField]
   private float maxClimbAngle = 80;

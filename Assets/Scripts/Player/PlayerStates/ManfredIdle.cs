@@ -34,7 +34,7 @@ public class ManfredIdle : FSM2.State
 
     manfred.playerInput.GatherInput();
 
-    if (manfred.playerInput.GetVerticalInput() < 0)
+    if (manfred.playerInput.GetHorizInput() == 0f && manfred.playerInput.GetVerticalInput() < 0)
     {
       this.fsm.ChangeState(manfred.stateCrouch);
       return;
@@ -43,6 +43,16 @@ public class ManfredIdle : FSM2.State
     if (timeInState >= attackCooldown && manfred.playerInput.GetDidPressAttack())
     {
       this.fsm.ChangeState(manfred.stateAttack1);
+      return;
     }
+
+    float horizInput = manfred.playerInput.GetHorizInput();
+    if (horizInput != 0f)
+    {
+      manfred.velocity.x = horizInput * manfred.horizSpeed;
+    }
+    manfred.velocity.y += manfred.gravity * Time.deltaTime;
+
+    manfred.controller.Move(manfred.velocity * Time.deltaTime);
   }
 }
