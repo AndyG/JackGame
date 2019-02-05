@@ -15,13 +15,11 @@ public class ManfredCrouch : FSM2.State
   public override void Enter()
   {
     Debug.Log("Enter Crouch");
-    manfred.animator.SetBool("IsCrouching", true);
   }
 
   public override void Exit()
   {
     Debug.Log("Exit Crouch");
-    manfred.animator.SetBool("IsCrouching", false);
   }
 
   public override void Update()
@@ -34,5 +32,10 @@ public class ManfredCrouch : FSM2.State
       Debug.Log("input: " + manfred.playerInput.GetVerticalInput());
       this.fsm.ChangeState(manfred.stateIdle);
     }
+  }
+
+  public override string GetAnimation()
+  {
+    return "ManfredCrouch";
   }
 }

@@ -15,13 +15,11 @@ public class ManfredAttack3 : FSM2.State
   public override void Enter()
   {
     Debug.Log("Enter Attack3");
-    manfred.animator.SetBool("Attack3", true);
   }
 
   public override void Exit()
   {
     Debug.Log("Exit Attack3");
-    manfred.animator.SetBool("Attack3", false);
   }
 
   public override void OnMessage(string message)
@@ -31,5 +29,10 @@ public class ManfredAttack3 : FSM2.State
       this.fsm.ChangeState(manfred.stateIdle);
       return;
     }
+  }
+
+  public override string GetAnimation()
+  {
+    return "ManfredAttack3";
   }
 }

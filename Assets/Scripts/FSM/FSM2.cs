@@ -5,16 +5,17 @@ using UnityEngine;
 public class FSM2
 {
   //Base class for all states, only the required methods need to be overriden
-  public class StateBase
+  public abstract class StateBase
   {
     [HideInInspector] public FSM2 fsm;
 
     public virtual void Update() { }
     public virtual void Exit() { }
     public virtual void OnMessage(string message) { }
+    public abstract string GetAnimation();
   };
 
-  public class State : StateBase { public virtual void Enter() { } }
+  public abstract class State : StateBase { public virtual void Enter() { } }
   public abstract class State1Param<T> : StateBase { public abstract void Enter(T p); }
   public abstract class State2Params<T0, T1> : StateBase { public abstract void Enter(T0 p0, T1 p1); }
   public abstract class State3Params<T0, T1, T2> : StateBase { public abstract void Enter(T0 p0, T1 p1, T2 p2); }

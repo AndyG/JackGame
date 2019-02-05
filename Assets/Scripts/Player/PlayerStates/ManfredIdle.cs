@@ -19,13 +19,11 @@ public class ManfredIdle : FSM2.State
   {
     Debug.Log("Enter Idle");
     timeInState = 0f;
-    manfred.animator.SetBool("Idle", true);
   }
 
   public override void Exit()
   {
     Debug.Log("Exit Idle");
-    manfred.animator.SetBool("Idle", false);
   }
 
   public override void Update()
@@ -54,5 +52,10 @@ public class ManfredIdle : FSM2.State
     manfred.velocity.y += manfred.gravity * Time.deltaTime;
 
     manfred.controller.Move(manfred.velocity * Time.deltaTime);
+  }
+
+  public override string GetAnimation()
+  {
+    return "ManfredIdle";
   }
 }

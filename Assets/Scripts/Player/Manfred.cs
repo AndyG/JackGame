@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-public class Manfred : MonoBehaviour
+public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider
 {
 
   public Animator animator;
@@ -53,5 +53,10 @@ public class Manfred : MonoBehaviour
     {
       fsm.currentState.OnMessage(message);
     }
+  }
+
+  public string GetAnimation()
+  {
+    return fsm.currentState.GetAnimation();
   }
 }

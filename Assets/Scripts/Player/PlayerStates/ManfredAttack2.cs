@@ -19,13 +19,11 @@ public class ManfredAttack2 : FSM2.State
     Debug.Log("Enter Attack2");
     allowNextAttack = false;
     lockout = false;
-    manfred.animator.SetBool("Attack2", true);
   }
 
   public override void Exit()
   {
     Debug.Log("Exit Attack2");
-    manfred.animator.SetBool("Attack2", false);
   }
 
   public override void Update()
@@ -57,5 +55,10 @@ public class ManfredAttack2 : FSM2.State
     {
       allowNextAttack = true;
     }
+  }
+
+  public override string GetAnimation()
+  {
+    return "ManfredAttack2";
   }
 }

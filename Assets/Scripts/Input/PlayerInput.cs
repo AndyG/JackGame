@@ -72,7 +72,8 @@ public class PlayerInput : MonoBehaviour
 
   private float _GetVerticalInput()
   {
-    float v = player.GetAxis("MoveVertical");
+    float v = Input.GetAxis("Vertical");
+    // player.GetAxis("MoveVertical");
     if (Mathf.Abs(v) < verticalDeadzone)
     {
       return 0;
