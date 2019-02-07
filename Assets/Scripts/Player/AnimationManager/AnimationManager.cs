@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
-public class AnimationManager : MonoBehaviour
+public class AnimationManager
 {
   private Animator animator;
   private AnimationProvider animationProvider;
 
-  void Start()
+  public AnimationManager(Animator animator, AnimationProvider animationProvider)
   {
-    animator = GetComponent<Animator>();
-    animationProvider = GetComponent<AnimationProvider>();
+    this.animator = animator;
+    this.animationProvider = animationProvider;
   }
 
-  void Update()
+  public void Update()
   {
     string animation = animationProvider.GetAnimation();
     if (!animator.GetCurrentAnimatorClipInfo(0)[0].clip.name.Equals(animation))

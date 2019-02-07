@@ -37,7 +37,7 @@ public class ManfredCrouch : FSM2.State
     if (manfred.playerInput.GetVerticalInput() >= 0f)
     {
       Debug.Log("input: " + manfred.playerInput.GetVerticalInput());
-      this.fsm.ChangeState(manfred.stateIdle);
+      this.fsm.ChangeState(manfred.stateGrounded);
     }
   }
 

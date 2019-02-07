@@ -7,7 +7,7 @@ public class ManfredAirborne : FSM2.State
 
   private Manfred manfred;
 
-  private float airborneFloatingThreshold = 10;
+  private float airborneFloatingThreshold = 7;
 
   public ManfredAirborne(Manfred manfred)
   {
@@ -16,25 +16,32 @@ public class ManfredAirborne : FSM2.State
 
   public override void Update()
   {
-    // add gravity
-    manfred.velocity.y += manfred.gravity * Time.deltaTime;
-
-    // move
-    manfred.controller.Move(manfred.velocity * Time.deltaTime);
+    manfred.playerInput.GatherInput();
 
     // check if hit ground
-    if (manfred.controller.GetCollisions().below)
+    if (manfred.velocity.y < 0 && manfred.controller.GetCollisions().below)
     {
       manfred.velocity.y = 0;
-      this.fsm.ChangeState(manfred.stateIdle);
+      this.fsm.ChangeState(manfred.stateGrounded);
+      return;
     }
+
+    if (manfred.velocity.y > manfred.minJumpVelocity && manfred.playerInput.GetDidReleaseJump())
+    {
+      manfred.velocity.y = manfred.minJumpVelocity;
+    }
+
+    // move
+    float horizInput = manfred.playerInput.GetHorizInput();
+    manfred.velocity.x = horizInput * manfred.horizSpeed;
+    manfred.velocity.y += manfred.gravity * Time.deltaTime;
+    manfred.controller.Move(manfred.velocity * Time.deltaTime);
   }
 
   public override string GetAnimation()
   {
     if (manfred.velocity.y > airborneFloatingThreshold)
     {
-      // check state and determine which frame to play.
       return "ManfredRising";
     }
     else if (manfred.velocity.y < -airborneFloatingThreshold)

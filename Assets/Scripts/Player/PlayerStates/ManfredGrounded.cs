@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ManfredIdle : FSM2.State
+public class ManfredGrounded : FSM2.State
 {
 
   private Manfred manfred;
@@ -10,31 +10,32 @@ public class ManfredIdle : FSM2.State
   private float attackCooldown = 0.05f;
   private float timeInState = 0.25f;
 
-  public ManfredIdle(Manfred manfred)
+  public ManfredGrounded(Manfred manfred)
   {
     this.manfred = manfred;
   }
 
   public override void Enter()
   {
-    Debug.Log("Enter Idle");
     timeInState = 0f;
-  }
-
-  public override void Exit()
-  {
-    Debug.Log("Exit Idle");
   }
 
   public override void Update()
   {
     timeInState += Time.deltaTime;
 
+    PlayerController.CollisionInfo collisionInfo = manfred.controller.GetCollisions();
     manfred.playerInput.GatherInput();
+
+    if (!collisionInfo.below)
+    {
+      this.fsm.ChangeState(manfred.stateAirborne);
+      return;
+    }
 
     if (manfred.playerInput.GetDidPressJump())
     {
-      manfred.velocity = manfred.groundedJumpPower * Vector2.up;
+      manfred.velocity.y = manfred.groundedJumpPower;
       this.fsm.ChangeState(manfred.stateAirborne);
       return;
     }
@@ -52,11 +53,9 @@ public class ManfredIdle : FSM2.State
     }
 
     float horizInput = manfred.playerInput.GetHorizInput();
-    if (horizInput != 0f)
-    {
-      manfred.velocity.x = horizInput * manfred.horizSpeed;
-    }
-    manfred.velocity.y += manfred.gravity * Time.deltaTime;
+    manfred.velocity.x = horizInput * manfred.horizSpeed;
+
+    manfred.velocity.y = manfred.gravity * Time.deltaTime;
 
     manfred.controller.Move(manfred.velocity * Time.deltaTime);
   }

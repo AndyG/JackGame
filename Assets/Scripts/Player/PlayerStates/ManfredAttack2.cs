@@ -47,7 +47,7 @@ public class ManfredAttack2 : FSM2.State
   {
     if (message.Equals("EndAttack2"))
     {
-      this.fsm.ChangeState(manfred.stateIdle);
+      this.fsm.ChangeState(manfred.stateGrounded);
       return;
     }
 

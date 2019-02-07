@@ -11,7 +11,11 @@ GameObject:
   - component: {fileID: 5785739327105106408}
   - component: {fileID: 5785739327105106409}
   - component: {fileID: 5785739327105106406}
-  m_Layer: 0
+  - component: {fileID: 949882972}
+  - component: {fileID: 949882970}
+  - component: {fileID: 949882971}
+  - component: {fileID: 949882973}
+  m_Layer: 8
   m_Name: Manfred
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,3 +103,83 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!61 &949882972
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5785739327105106407}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.099999964}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 2, y: 2}
+    newSize: {x: 2, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.99630755, y: 0.19999993}
+  m_EdgeRadius: 0
+--- !u!114 &949882970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5785739327105106407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 746ebc2d7c45e48fda23b9112ed61082, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  playerInput: {fileID: 0}
+  controller: {fileID: 0}
+  gravity: -60
+  velocity: {x: 0, y: 0}
+  horizSpeed: 20
+  groundedJumpPower: 25
+--- !u!114 &949882971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5785739327105106407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19dbac5aee24746ed83c5ce2104390d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerId: 0
+  horizontalDeadzone: 0.02
+  verticalDeadzone: 0.02
+--- !u!114 &949882973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5785739327105106407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4f5872712d96446da9d24e20eff02e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalRayCount: 4
+  verticalRayCount: 4
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  maxClimbAngle: 80
+  maxDescendAngle: 80
+  drawDebugRays: 1
