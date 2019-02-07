@@ -2835,7 +2835,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00000023841858, y: 5.99, z: -10}
+  m_LocalPosition: {x: -0.00000023841858, y: 15.49, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3025,7 +3025,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 914289396}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00000023841858, y: 5.99, z: -10}
+  m_LocalPosition: {x: -0.00000023841858, y: 15.49, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 738239852}
@@ -3941,7 +3941,7 @@ PrefabInstance:
     - target: {fileID: 5785739327105106408, guid: 8a6f138910f32416aa3b3ed9b87ee251,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: 14.5
       objectReference: {fileID: 0}
     - target: {fileID: 5785739327105106408, guid: 8a6f138910f32416aa3b3ed9b87ee251,
         type: 3}
@@ -3988,9 +3988,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 949882972, guid: 8a6f138910f32416aa3b3ed9b87ee251, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.5500002
+      objectReference: {fileID: 0}
+    - target: {fileID: 949882972, guid: 8a6f138910f32416aa3b3ed9b87ee251, type: 3}
+      propertyPath: m_Size.y
+      value: 1.1000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 949882972, guid: 8a6f138910f32416aa3b3ed9b87ee251, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.050000012
+      objectReference: {fileID: 0}
+    - target: {fileID: 949882972, guid: 8a6f138910f32416aa3b3ed9b87ee251, type: 3}
+      propertyPath: m_Size.x
+      value: 0.9
+      objectReference: {fileID: 0}
     - target: {fileID: 949882973, guid: 8a6f138910f32416aa3b3ed9b87ee251, type: 3}
       propertyPath: verticalRayCount
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 949882973, guid: 8a6f138910f32416aa3b3ed9b87ee251, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a6f138910f32416aa3b3ed9b87ee251, type: 3}

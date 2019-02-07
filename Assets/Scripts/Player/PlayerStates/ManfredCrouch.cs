@@ -26,7 +26,6 @@ public class ManfredCrouch : FSM2.State
     // Player is no longer holding crouch.
     if (manfred.playerInput.GetVerticalInput() >= 0f)
     {
-      Debug.Log("input: " + manfred.playerInput.GetVerticalInput());
       this.fsm.ChangeState(manfred.stateGrounded);
     }
   }

@@ -32,12 +32,13 @@ public class ManfredAirborne : FSM2.State
     {
       manfred.FaceMovementDirection();
     }
+
     manfred.controller.Move(manfred.velocity * Time.deltaTime);
 
     // check if hit ground
-    if (manfred.velocity.y < 0 && manfred.controller.GetCollisions().below)
+    if (manfred.controller.GetCollisions().below)
     {
-      manfred.velocity.y = 0;
+      manfred.velocity.y = 0f;
       this.fsm.ChangeState(manfred.stateGrounded);
       return;
     }

@@ -24,14 +24,7 @@ public class ManfredGrounded : FSM2.State
   {
     timeInState += Time.deltaTime;
 
-    PlayerController.CollisionInfo collisionInfo = manfred.controller.GetCollisions();
     manfred.playerInput.GatherInput();
-
-    if (!collisionInfo.below)
-    {
-      this.fsm.ChangeState(manfred.stateAirborne);
-      return;
-    }
 
     if (manfred.playerInput.GetDidPressJump())
     {
@@ -61,6 +54,13 @@ public class ManfredGrounded : FSM2.State
       manfred.FaceMovementDirection();
     }
     manfred.controller.Move(manfred.velocity * Time.deltaTime);
+
+    PlayerController.CollisionInfo collisionInfo = manfred.controller.GetCollisions();
+    if (!collisionInfo.below)
+    {
+      this.fsm.ChangeState(manfred.stateAirborne);
+      return;
+    }
   }
 
   public override string GetAnimation()

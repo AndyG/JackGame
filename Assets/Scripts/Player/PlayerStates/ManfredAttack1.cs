@@ -16,14 +16,8 @@ public class ManfredAttack1 : FSM2.State
 
   public override void Enter()
   {
-    Debug.Log("Enter Attack1");
     allowNextAttack = false;
     lockout = false;
-  }
-
-  public override void Exit()
-  {
-    Debug.Log("Exit Attack1");
   }
 
   public override void Update()

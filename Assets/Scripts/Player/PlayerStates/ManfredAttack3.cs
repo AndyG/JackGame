@@ -12,16 +12,6 @@ public class ManfredAttack3 : FSM2.State
     this.manfred = manfred;
   }
 
-  public override void Enter()
-  {
-    Debug.Log("Enter Attack3");
-  }
-
-  public override void Exit()
-  {
-    Debug.Log("Exit Attack3");
-  }
-
   public override void OnMessage(string message)
   {
     if (message.Equals("EndAttack3"))

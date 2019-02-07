@@ -18,7 +18,6 @@ public class AnimationManager
     string animation = animationProvider.GetAnimation();
     if (!animator.GetCurrentAnimatorClipInfo(0)[0].clip.name.Equals(animation))
     {
-      Debug.Log("attempting to play animation: " + animation);
       animator.Play(animation);
     }
   }
