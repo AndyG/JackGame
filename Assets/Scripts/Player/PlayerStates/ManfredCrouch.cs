@@ -26,6 +26,13 @@ public class ManfredCrouch : FSM2.State
   {
     manfred.playerInput.GatherInput();
 
+    if (manfred.playerInput.GetDidPressJump())
+    {
+      manfred.velocity = manfred.groundedJumpPower * Vector2.up;
+      this.fsm.ChangeState(manfred.stateAirborne);
+      return;
+    }
+
     // Player is no longer holding crouch.
     if (manfred.playerInput.GetVerticalInput() >= 0f)
     {

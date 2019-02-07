@@ -32,6 +32,13 @@ public class ManfredIdle : FSM2.State
 
     manfred.playerInput.GatherInput();
 
+    if (manfred.playerInput.GetDidPressJump())
+    {
+      manfred.velocity = manfred.groundedJumpPower * Vector2.up;
+      this.fsm.ChangeState(manfred.stateAirborne);
+      return;
+    }
+
     if (manfred.playerInput.GetHorizInput() == 0f && manfred.playerInput.GetVerticalInput() < 0)
     {
       this.fsm.ChangeState(manfred.stateCrouch);

@@ -13,6 +13,7 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider
   public float gravity;
   public Vector2 velocity = new Vector2(0f, 0f);
   public float horizSpeed = 0.5f;
+  public float groundedJumpPower = 40;
 
   private FSM2 fsm;
 
@@ -23,6 +24,7 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider
   public FSM2.State stateAttack3;
   public FSM2.State stateIdle;
   public FSM2.State stateCrouch;
+  public FSM2.State stateAirborne;
 
   void Start()
   {
@@ -37,6 +39,7 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider
     stateAttack3 = new ManfredAttack3(this);
     stateIdle = new ManfredIdle(this);
     stateCrouch = new ManfredCrouch(this);
+    stateAirborne = new ManfredAirborne(this);
     fsm.ChangeState(stateIdle);
   }
 
