@@ -17,6 +17,8 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider
   public float groundedJumpPower = 40;
   public float minJumpVelocity = 5;
 
+  public bool isFacingRight = true;
+
   private FSM2 fsm;
 
   public FSM2.State stateAttack1;
@@ -67,7 +69,11 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider
 
   public bool IsFacingDefaultDirection()
   {
-    return (fsm.currentState.OverridesFacingDirection() && fsm.currentState.IsFacingDefaultDirection())
-      || velocity.x >= 0;
+    return isFacingRight;
+  }
+
+  public void FaceMovementDirection()
+  {
+    isFacingRight = velocity.x >= 0f;
   }
 }

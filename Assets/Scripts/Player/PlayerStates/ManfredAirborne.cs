@@ -18,14 +18,6 @@ public class ManfredAirborne : FSM2.State
   {
     manfred.playerInput.GatherInput();
 
-    // check if hit ground
-    if (manfred.velocity.y < 0 && manfred.controller.GetCollisions().below)
-    {
-      manfred.velocity.y = 0;
-      this.fsm.ChangeState(manfred.stateGrounded);
-      return;
-    }
-
     if (manfred.velocity.y > manfred.minJumpVelocity && manfred.playerInput.GetDidReleaseJump())
     {
       manfred.velocity.y = manfred.minJumpVelocity;
@@ -35,7 +27,20 @@ public class ManfredAirborne : FSM2.State
     float horizInput = manfred.playerInput.GetHorizInput();
     manfred.velocity.x = horizInput * manfred.horizSpeed;
     manfred.velocity.y += manfred.gravity * Time.deltaTime;
+
+    if (horizInput != 0f)
+    {
+      manfred.FaceMovementDirection();
+    }
     manfred.controller.Move(manfred.velocity * Time.deltaTime);
+
+    // check if hit ground
+    if (manfred.velocity.y < 0 && manfred.controller.GetCollisions().below)
+    {
+      manfred.velocity.y = 0;
+      this.fsm.ChangeState(manfred.stateGrounded);
+      return;
+    }
   }
 
   public override string GetAnimation()

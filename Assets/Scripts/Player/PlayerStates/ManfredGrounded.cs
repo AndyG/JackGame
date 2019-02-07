@@ -54,9 +54,12 @@ public class ManfredGrounded : FSM2.State
 
     float horizInput = manfred.playerInput.GetHorizInput();
     manfred.velocity.x = horizInput * manfred.horizSpeed;
-
     manfred.velocity.y = manfred.gravity * Time.deltaTime;
 
+    if (horizInput != 0f)
+    {
+      manfred.FaceMovementDirection();
+    }
     manfred.controller.Move(manfred.velocity * Time.deltaTime);
   }
 

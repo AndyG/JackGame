@@ -12,16 +12,6 @@ public class ManfredCrouch : FSM2.State
     this.manfred = manfred;
   }
 
-  public override void Enter()
-  {
-    Debug.Log("Enter Crouch");
-  }
-
-  public override void Exit()
-  {
-    Debug.Log("Exit Crouch");
-  }
-
   public override void Update()
   {
     manfred.playerInput.GatherInput();

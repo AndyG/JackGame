@@ -29,7 +29,6 @@ public class RaycastController : MonoBehaviour
     CalculateRaySpacing();
   }
 
-  // Update is called once per frame
   protected void UpdateRaycastOrigins()
   {
     Bounds bounds = boxCollider.bounds;
