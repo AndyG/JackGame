@@ -16,8 +16,13 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider
   public float horizSpeed = 0.5f;
   public float groundedJumpPower = 40;
   public float minJumpVelocity = 5;
+  public float velocityXSmoothFactorGrounded = 0.2f;
+  public float velocityXSmoothFactorAirborne = 0.4f;
 
   public bool isFacingRight = true;
+
+  // smoothing function
+  public float velocityXSmoothing = 0f;
 
   private FSM2 fsm;
 
@@ -28,10 +33,14 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider
   public FSM2.State stateCrouch;
   public FSM2.State stateAirborne;
 
+  void Awake()
+  {
+    playerInput.Awake();
+  }
+
   void Start()
   {
     animator = GetComponent<Animator>();
-    playerInput = GetComponent<PlayerInput>();
     controller = GetComponent<PlayerController>();
 
     animationManager = new AnimationManager(animator, this);
@@ -49,6 +58,7 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider
 
   void Update()
   {
+    playerInput.Update();
     fsm.UpdateCurrentState();
     animationManager.Update();
     transform.localScale = new Vector3(IsFacingDefaultDirection() ? 1f : -1f, 1f, 1f);

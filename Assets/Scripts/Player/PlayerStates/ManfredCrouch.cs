@@ -14,9 +14,7 @@ public class ManfredCrouch : FSM2.State
 
   public override void Update()
   {
-    manfred.playerInput.GatherInput();
-
-    if (manfred.playerInput.GetDidPressJump())
+    if (manfred.playerInput.GetDidPressJumpBuffered())
     {
       manfred.velocity = manfred.groundedJumpPower * Vector2.up;
       this.fsm.ChangeState(manfred.stateAirborne);

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Rewired;
 
-public class PlayerInput : MonoBehaviour
+[CreateAssetMenu(fileName = "Input", menuName = "PlayerInput", order = 1)]
+public class PlayerInput : ScriptableObject
 {
 
   [SerializeField]
@@ -15,6 +16,9 @@ public class PlayerInput : MonoBehaviour
   [SerializeField]
   private float verticalDeadzone = 0.02f;
 
+  [SerializeField]
+  private float jumpBufferTime;
+
   private Player player;
 
   private float horizInput;
@@ -24,19 +28,32 @@ public class PlayerInput : MonoBehaviour
   private bool didPressAttack;
   private bool didPressGrapple;
 
-  void Awake()
+  private ActionBuffer actionBuffer;
+
+  public void Awake()
   {
     player = ReInput.players.GetPlayer(playerId);
+    actionBuffer = new ActionBuffer();
   }
 
-  public void GatherInput()
+  public void Update()
   {
+    actionBuffer.Update();
     Clear();
     horizInput = _GetHorizInput();
     verticalInput = _GetVerticalInput();
     didPressJump = _GetDidPressJump();
     didReleaseJump = _GetDidReleaseJump();
     didPressAttack = _GetDidPressAttack();
+
+    if (didPressJump)
+    {
+      actionBuffer.Buffer(ACTION_JUMP, jumpBufferTime);
+    }
+    else if (didReleaseJump)
+    {
+      actionBuffer.ClearAction(ACTION_JUMP);
+    }
   }
 
   private void Clear()
@@ -51,6 +68,7 @@ public class PlayerInput : MonoBehaviour
   public float GetHorizInput() => horizInput;
   public float GetVerticalInput() => verticalInput;
   public bool GetDidPressJump() => didPressJump;
+  public bool GetDidPressJumpBuffered() => actionBuffer.ConsumeBuffer(ACTION_JUMP);
   public bool GetDidReleaseJump() => didReleaseJump;
   public bool GetDidPressAttack() => didPressAttack;
   #endregion
@@ -87,5 +105,9 @@ public class PlayerInput : MonoBehaviour
   private bool _GetDidPressJump() => player.GetButtonDown("Jump");
   private bool _GetDidReleaseJump() => player.GetButtonUp("Jump");
   private bool _GetDidPressAttack() => player.GetButtonDown("PrimaryAttack");
+  #endregion
+
+  #region Buffer keys
+  private static string ACTION_JUMP = "Jump";
   #endregion
 }

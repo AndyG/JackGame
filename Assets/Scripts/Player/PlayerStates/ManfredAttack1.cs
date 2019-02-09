@@ -22,8 +22,6 @@ public class ManfredAttack1 : FSM2.State
 
   public override void Update()
   {
-    manfred.playerInput.GatherInput();
-
     if (manfred.playerInput.GetDidPressAttack())
     {
       if (!allowNextAttack)

@@ -16,8 +16,6 @@ public class ManfredAirborne : FSM2.State
 
   public override void Update()
   {
-    manfred.playerInput.GatherInput();
-
     if (manfred.velocity.y > manfred.minJumpVelocity && manfred.playerInput.GetDidReleaseJump())
     {
       manfred.velocity.y = manfred.minJumpVelocity;
@@ -25,7 +23,13 @@ public class ManfredAirborne : FSM2.State
 
     // move
     float horizInput = manfred.playerInput.GetHorizInput();
-    manfred.velocity.x = horizInput * manfred.horizSpeed;
+    float targetVelocityX = horizInput * manfred.horizSpeed;
+    manfred.velocity.x = Mathf.SmoothDamp(
+      manfred.velocity.x,
+      targetVelocityX,
+      ref manfred.velocityXSmoothing,
+      manfred.velocityXSmoothFactorAirborne);
+
     manfred.velocity.y += manfred.gravity * Time.deltaTime;
 
     if (horizInput != 0f)

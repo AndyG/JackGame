@@ -24,9 +24,7 @@ public class ManfredGrounded : FSM2.State
   {
     timeInState += Time.deltaTime;
 
-    manfred.playerInput.GatherInput();
-
-    if (manfred.playerInput.GetDidPressJump())
+    if (manfred.playerInput.GetDidPressJumpBuffered())
     {
       manfred.velocity.y = manfred.groundedJumpPower;
       this.fsm.ChangeState(manfred.stateAirborne);
@@ -35,6 +33,7 @@ public class ManfredGrounded : FSM2.State
 
     if (manfred.playerInput.GetHorizInput() == 0f && manfred.playerInput.GetVerticalInput() < 0)
     {
+      manfred.velocity.x = 0;
       this.fsm.ChangeState(manfred.stateCrouch);
       return;
     }
@@ -46,7 +45,14 @@ public class ManfredGrounded : FSM2.State
     }
 
     float horizInput = manfred.playerInput.GetHorizInput();
-    manfred.velocity.x = horizInput * manfred.horizSpeed;
+
+    float targetVelocityX = horizInput * manfred.horizSpeed;
+    manfred.velocity.x = Mathf.SmoothDamp(
+      manfred.velocity.x,
+      targetVelocityX,
+      ref manfred.velocityXSmoothing,
+      manfred.velocityXSmoothFactorGrounded);
+
     manfred.velocity.y = manfred.gravity * Time.deltaTime;
 
     if (horizInput != 0f)
