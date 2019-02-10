@@ -34,6 +34,6 @@ public class Cannon : MonoBehaviour
   private void DoShoot()
   {
     animator.SetTrigger("Shoot");
-    spawner.Spawn();
+    spawner.Spawn(transform.rotation);
   }
 }

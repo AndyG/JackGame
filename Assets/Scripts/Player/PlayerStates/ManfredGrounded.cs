@@ -44,6 +44,12 @@ public class ManfredGrounded : FSM2.State
       return;
     }
 
+    if (manfred.playerInput.GetDidPressParry())
+    {
+      this.fsm.ChangeState(manfred.stateParryStance);
+      return;
+    }
+
     float horizInput = manfred.playerInput.GetHorizInput();
 
     float targetVelocityX = horizInput * manfred.horizSpeed;

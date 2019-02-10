@@ -32,6 +32,7 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   public FSM2.State stateGrounded;
   public FSM2.State stateCrouch;
   public FSM2.State stateAirborne;
+  public FSM2.State stateParryStance;
 
   void Awake()
   {
@@ -52,6 +53,7 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
     stateGrounded = new ManfredGrounded(this);
     stateCrouch = new ManfredCrouch(this);
     stateAirborne = new ManfredAirborne(this);
+    stateParryStance = new ManfredParryStance(this);
 
     fsm.ChangeState(stateAirborne);
   }
@@ -89,6 +91,6 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
 
   public HurtInfo OnHit(HitInfo hitInfo)
   {
-    return new HurtInfo();
+    return new HurtInfo(true);
   }
 }

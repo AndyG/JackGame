@@ -3300,7 +3300,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00000047683716, y: 15.49, z: -10}
+  m_LocalPosition: {x: -1.0000005, y: 2.9899998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3409,11 +3409,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7396190648753017816, guid: 9124c8151d1144361a7159d6ee4d9cb6,
-        type: 3}
-      propertyPath: interval
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9124c8151d1144361a7159d6ee4d9cb6, type: 3}
@@ -3638,7 +3633,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 914289396}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00000047683716, y: 15.49, z: -10}
+  m_LocalPosition: {x: -1.0000005, y: 2.9899998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 738239852}
@@ -3856,6 +3851,15 @@ MonoBehaviour:
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 0
+    - _id: 4
+      _name: Parry
+      _type: 1
+      _descriptiveName: Parry
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 0
     actionCategories:
     - _name: Default
       _descriptiveName: Default
@@ -3865,7 +3869,7 @@ MonoBehaviour:
     actionCategoryMap:
       list:
       - categoryId: 0
-        actionIds: 00000000010000000200000003000000
+        actionIds: 0000000001000000020000000300000004000000
     inputBehaviors:
     - _id: 0
       _name: Default
@@ -3966,12 +3970,23 @@ MonoBehaviour:
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 4
+        _elementType: 1
+        _elementIdentifierId: 8
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
     keyboardMaps: []
     mouseMaps: []
     customControllerMaps: []
     customControllers: []
     playerIdCounter: 2
-    actionIdCounter: 4
+    actionIdCounter: 5
     actionCategoryIdCounter: 1
     inputBehaviorIdCounter: 1
     mapCategoryIdCounter: 1
@@ -4601,11 +4616,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7396190648753017816, guid: 9124c8151d1144361a7159d6ee4d9cb6,
-        type: 3}
-      propertyPath: interval
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9124c8151d1144361a7159d6ee4d9cb6, type: 3}
 --- !u!1001 &5785739327783145905
@@ -4623,12 +4633,12 @@ PrefabInstance:
     - target: {fileID: 5785739327105106408, guid: 8a6f138910f32416aa3b3ed9b87ee251,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5785739327105106408, guid: 8a6f138910f32416aa3b3ed9b87ee251,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5785739327105106408, guid: 8a6f138910f32416aa3b3ed9b87ee251,
         type: 3}
@@ -4743,11 +4753,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7396190648753017816, guid: 9124c8151d1144361a7159d6ee4d9cb6,
-        type: 3}
-      propertyPath: interval
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9124c8151d1144361a7159d6ee4d9cb6, type: 3}

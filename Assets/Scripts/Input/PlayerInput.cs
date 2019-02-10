@@ -26,7 +26,7 @@ public class PlayerInput : ScriptableObject
   private bool didPressJump;
   private bool didReleaseJump;
   private bool didPressAttack;
-  private bool didPressGrapple;
+  private bool didPressParry;
 
   private ActionBuffer actionBuffer;
 
@@ -45,6 +45,7 @@ public class PlayerInput : ScriptableObject
     didPressJump = _GetDidPressJump();
     didReleaseJump = _GetDidReleaseJump();
     didPressAttack = _GetDidPressAttack();
+    didPressParry = _GetDidPressParry();
 
     if (didPressJump)
     {
@@ -71,6 +72,7 @@ public class PlayerInput : ScriptableObject
   public bool GetDidPressJumpBuffered() => actionBuffer.ConsumeBuffer(ACTION_JUMP);
   public bool GetDidReleaseJump() => didReleaseJump;
   public bool GetDidPressAttack() => didPressAttack;
+  public bool GetDidPressParry() => didPressParry;
   #endregion
 
   #region Get raw input
@@ -105,6 +107,7 @@ public class PlayerInput : ScriptableObject
   private bool _GetDidPressJump() => player.GetButtonDown("Jump");
   private bool _GetDidReleaseJump() => player.GetButtonUp("Jump");
   private bool _GetDidPressAttack() => player.GetButtonDown("PrimaryAttack");
+  private bool _GetDidPressParry() => player.GetButtonDown("Parry");
   #endregion
 
   #region Buffer keys

@@ -11,8 +11,8 @@ public class Spawner : MonoBehaviour
   [SerializeField]
   private GameObject spawnObject;
 
-  public void Spawn()
+  public void Spawn(Quaternion rotation)
   {
-    GameObject newObj = GameObject.Instantiate(this.spawnObject, this.transform.position, Quaternion.identity);
+    GameObject.Instantiate(this.spawnObject, this.transform.position, rotation);
   }
 }
