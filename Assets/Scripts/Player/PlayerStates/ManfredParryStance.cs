@@ -16,6 +16,12 @@ public class ManfredParryStance : FSM2.State
   {
   }
 
+  public override HurtInfo OnHit(HitInfo hitInfo)
+  {
+    this.fsm.ChangeState(manfred.stateParryAction);
+    return new HurtInfo(false);
+  }
+
   public override string GetAnimation()
   {
     return "ManfredParryStance";

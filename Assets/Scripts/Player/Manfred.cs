@@ -33,6 +33,7 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   public FSM2.State stateCrouch;
   public FSM2.State stateAirborne;
   public FSM2.State stateParryStance;
+  public FSM2.State stateParryAction;
 
   void Awake()
   {
@@ -54,6 +55,7 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
     stateCrouch = new ManfredCrouch(this);
     stateAirborne = new ManfredAirborne(this);
     stateParryStance = new ManfredParryStance(this);
+    stateParryAction = new ManfredParryAction(this);
 
     fsm.ChangeState(stateAirborne);
   }
@@ -74,6 +76,20 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
     }
   }
 
+  public HurtInfo OnHit(HitInfo hitInfo)
+  {
+    if (fsm.currentState != null)
+    {
+      HurtInfo hurtInfo = fsm.currentState.OnHit(hitInfo);
+      if (hurtInfo != null)
+      {
+        return hurtInfo;
+      }
+    }
+
+    return new HurtInfo(true);
+  }
+
   public string GetAnimation()
   {
     return fsm.currentState.GetAnimation();
@@ -87,10 +103,5 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   public void FaceMovementDirection()
   {
     isFacingRight = velocity.x >= 0f;
-  }
-
-  public HurtInfo OnHit(HitInfo hitInfo)
-  {
-    return new HurtInfo(true);
   }
 }

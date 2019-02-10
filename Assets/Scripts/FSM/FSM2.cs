@@ -12,6 +12,7 @@ public class FSM2
     public virtual void Update() { }
     public virtual void Exit() { }
     public virtual void OnMessage(string message) { }
+    public virtual HurtInfo OnHit(HitInfo hitInfo) { return null; }
     public virtual bool OverridesFacingDirection() { return false; }
     public virtual bool IsFacingDefaultDirection() { return true; }
     public abstract string GetAnimation();
