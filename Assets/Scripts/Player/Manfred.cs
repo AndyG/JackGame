@@ -86,4 +86,9 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   {
     isFacingRight = velocity.x >= 0f;
   }
+
+  public HurtInfo OnHit(HitInfo hitInfo)
+  {
+    return new HurtInfo();
+  }
 }

@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Hurtable
+/**
+Used to pass data back to a hitbox about the interaction.
+ */
+public class HurtInfo
 {
-  HurtInfo OnHit(HitInfo hitInfo);
 }
