@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider
+public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtable
 {
 
   public Animator animator;
