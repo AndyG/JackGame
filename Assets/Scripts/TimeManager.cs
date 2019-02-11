@@ -8,6 +8,9 @@ public class TimeManager : MonoBehaviour
   [Range(0f, 2f)]
   private float timeScale = 1f;
 
+  [SerializeField]
+  private float MAX_PAUSE_TIME = 0.3f;
+
   private bool isDoingDramaticPause = false;
   private float timeScaleSnapshot;
 
@@ -40,7 +43,8 @@ public class TimeManager : MonoBehaviour
     isDoingDramaticPause = true;
     timeScaleSnapshot = origTimeScale;
     SetTimeScale(0f);
-    yield return new WaitForSecondsRealtime(pauseTime / origTimeScale);
+    float resolvedPauseTime = Mathf.Min(pauseTime / origTimeScale, MAX_PAUSE_TIME);
+    yield return new WaitForSecondsRealtime(resolvedPauseTime);
     SetTimeScale(timeScaleSnapshot);
     isDoingDramaticPause = false;
   }

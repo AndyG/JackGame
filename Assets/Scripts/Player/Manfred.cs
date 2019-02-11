@@ -78,7 +78,7 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
 
   public HurtInfo OnHit(HitInfo hitInfo)
   {
-    TimeManagerSingleton.Instance.DoDramaticPause(0.5f);
+    TimeManagerSingleton.Instance.DoDramaticPause(0.2f);
 
     if (fsm.currentState != null)
     {
