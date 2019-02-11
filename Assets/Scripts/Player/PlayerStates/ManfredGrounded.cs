@@ -59,6 +59,8 @@ public class ManfredGrounded : FSM2.State
       ref manfred.velocityXSmoothing,
       manfred.velocityXSmoothFactorGrounded);
 
+    // manfred.velocity.y = Mathf.Min(-0.1f, manfred.gravity * Time.deltaTime);
+    // Debug.Log("computed y velocity: " + manfred.velocity.y);
     manfred.velocity.y = manfred.gravity * Time.deltaTime;
 
     if (horizInput != 0f)

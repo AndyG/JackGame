@@ -23,6 +23,13 @@ public class PlayerController : RaycastController
 
   public void Move(Vector3 moveDistance, bool isStandingOnPlatform = false)
   {
+    if (Time.timeScale <= 0f)
+    {
+      // hack? If timescale is 0f, the player shouldn't be moving. this prevents collisions from
+      // being cleared out and the player incorrectly switching to airborne.
+      return;
+    }
+
     UpdateRaycastOrigins();
     collisionInfo.Reset();
     collisionInfo.velocityOld = moveDistance;
