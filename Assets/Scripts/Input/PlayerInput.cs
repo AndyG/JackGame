@@ -21,6 +21,8 @@ public class PlayerInput : ScriptableObject
 
   private Player player;
 
+  private float horizInputRaw;
+  private float verticalInputRaw;
   private float horizInput;
   private float verticalInput;
   private bool didPressJump;
@@ -60,12 +62,17 @@ public class PlayerInput : ScriptableObject
   private void Clear()
   {
     horizInput = 0f;
+    verticalInput = 0f;
     didPressJump = false;
     didReleaseJump = false;
     didPressAttack = false;
+    horizInputRaw = 0f;
+    verticalInputRaw = 0f;
   }
 
   #region Getters
+  public float GetHorizInputRaw() => horizInputRaw;
+  public float GetVerticalInputRaw() => verticalInputRaw;
   public float GetHorizInput() => horizInput;
   public float GetVerticalInput() => verticalInput;
   public bool GetDidPressJump() => didPressJump;
@@ -79,28 +86,27 @@ public class PlayerInput : ScriptableObject
 
   private float _GetHorizInput()
   {
-    float h = player.GetAxis("MoveHorizontal");
-    if (Mathf.Abs(h) < horizontalDeadzone)
+    horizInputRaw = player.GetAxis("MoveHorizontal");
+    if (Mathf.Abs(horizInputRaw) < horizontalDeadzone)
     {
       return 0;
     }
     else
     {
-      return Mathf.Sign(h);
+      return Mathf.Sign(horizInputRaw);
     }
   }
 
   private float _GetVerticalInput()
   {
-    float v = Input.GetAxis("Vertical");
-    // player.GetAxis("MoveVertical");
-    if (Mathf.Abs(v) < verticalDeadzone)
+    verticalInputRaw = player.GetAxis("MoveVertical");
+    if (Mathf.Abs(verticalInputRaw) < verticalDeadzone)
     {
       return 0;
     }
     else
     {
-      return Mathf.Sign(v);
+      return Mathf.Sign(verticalInputRaw);
     }
   }
 

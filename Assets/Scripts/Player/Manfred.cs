@@ -33,7 +33,7 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   public FSM2.State stateCrouch;
   public FSM2.State stateAirborne;
   public FSM2.State stateParryStance;
-  public FSM2.State stateParryAction;
+  public ManfredParryAction stateParryAction;
 
   void Awake()
   {

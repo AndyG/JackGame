@@ -14,7 +14,9 @@ public class Fireball : MonoBehaviour
   [SerializeField]
   private float velocity;
 
-  private static HitInfo hitInfo = new HitInfo();
+  [SerializeField]
+  private GameObject parrySpawnObjectPrototype;
+
   private static Vector3 invertedLocalScale = new Vector3(-1f, 1f, 1f);
 
   void Awake()
@@ -34,7 +36,7 @@ public class Fireball : MonoBehaviour
     if (hurtables.Count > 0)
     {
       Hurtable hurtable = hurtables[0];
-      HurtInfo hurtInfo = hurtable.OnHit(hitInfo);
+      HurtInfo hurtInfo = hurtable.OnHit(new HitInfo(this.transform.position, this.parrySpawnObjectPrototype));
       if (hurtInfo.hitConnected)
       {
         Destroy(gameObject);

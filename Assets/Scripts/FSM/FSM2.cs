@@ -55,7 +55,7 @@ public class FSM2
     if (ChangeStateBase(_newState)) _newState.Enter(p);
   }
 
-  public void ChangeState<T0, T1>(State2Params<T0, T1> _newState, T0 p0, T1 p1)
+  public void ChangeState2<T0, T1>(State2Params<T0, T1> _newState, T0 p0, T1 p1)
   {
     if (ChangeStateBase(_newState)) _newState.Enter(p0, p1);
   }
