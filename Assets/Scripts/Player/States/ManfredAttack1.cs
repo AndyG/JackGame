@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ManfredAttack1 : FSM2.State
+[CreateAssetMenu(fileName = "ManfredAttack1", menuName = "ManfredStates/ManfredAttack1")]
+public class ManfredAttack1 : ManfredStates.ManfredState0Param
 {
 
-  private Manfred manfred;
   private bool allowNextAttack = false;
   private bool lockout = false;
-
-  public ManfredAttack1(Manfred manfred)
-  {
-    this.manfred = manfred;
-  }
 
   public override void Enter()
   {
@@ -30,9 +25,8 @@ public class ManfredAttack1 : FSM2.State
       }
       else if (!lockout)
       {
-        this.fsm.ChangeState(manfred.stateAttack2);
+        manfred.fsm.ChangeState(manfred.stateAttack2, manfred.stateAttack2);
       }
-      return;
     }
   }
 
@@ -40,7 +34,7 @@ public class ManfredAttack1 : FSM2.State
   {
     if (message.Equals("EndAttack1"))
     {
-      this.fsm.ChangeState(manfred.stateGrounded);
+      manfred.fsm.ChangeState(manfred.stateGrounded, manfred.stateGrounded);
       return;
     }
 

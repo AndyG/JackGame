@@ -14,7 +14,6 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   public float gravity;
   public Vector2 velocity = new Vector2(0f, 0f);
   public float horizSpeed = 0.5f;
-  public float groundedJumpPower = 40;
   public float minJumpVelocity = 5;
   public float velocityXSmoothFactorGrounded = 0.2f;
   public float velocityXSmoothFactorAirborne = 0.4f;
@@ -24,15 +23,16 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   // smoothing function
   public float velocityXSmoothing = 0f;
 
-  private FSM2 fsm;
+  public FSM<Manfred, ManfredStates.IManfredState> fsm;
 
-  public FSM2.State stateAttack1;
-  public FSM2.State stateAttack2;
-  public FSM2.State stateAttack3;
-  public FSM2.State stateGrounded;
-  public FSM2.State stateCrouch;
-  public FSM2.State stateAirborne;
-  public FSM2.State stateParryStance;
+  [Header("States")]
+  public ManfredAttack1 stateAttack1;
+  public ManfredAttack2 stateAttack2;
+  public ManfredAttack3 stateAttack3;
+  public ManfredGrounded stateGrounded;
+  public ManfredCrouch stateCrouch;
+  public ManfredAirborne stateAirborne;
+  public ManfredParryStance stateParryStance;
   public ManfredParryAction stateParryAction;
 
   void Awake()
@@ -47,17 +47,9 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
 
     animationManager = new AnimationManager(animator, this);
 
-    fsm = new FSM2();
-    stateAttack1 = new ManfredAttack1(this);
-    stateAttack2 = new ManfredAttack2(this);
-    stateAttack3 = new ManfredAttack3(this);
-    stateGrounded = new ManfredGrounded(this);
-    stateCrouch = new ManfredCrouch(this);
-    stateAirborne = new ManfredAirborne(this);
-    stateParryStance = new ManfredParryStance(this);
-    stateParryAction = new ManfredParryAction(this);
+    fsm = new FSM<Manfred, ManfredStates.IManfredState>(this);
 
-    fsm.ChangeState(stateAirborne);
+    fsm.ChangeState(stateAirborne, stateAirborne);
   }
 
   void Update()
@@ -78,18 +70,7 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
 
   public HurtInfo OnHit(HitInfo hitInfo)
   {
-    TimeManagerSingleton.Instance.DoDramaticPause(0.2f);
-
-    if (fsm.currentState != null)
-    {
-      HurtInfo hurtInfo = fsm.currentState.OnHit(hitInfo);
-      if (hurtInfo != null)
-      {
-        return hurtInfo;
-      }
-    }
-
-    return new HurtInfo(true);
+    return fsm.currentState.OnHit(hitInfo);
   }
 
   public string GetAnimation()

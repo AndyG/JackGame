@@ -210,6 +210,14 @@ MonoBehaviour:
   velocityXSmoothFactorAirborne: 0.1
   isFacingRight: 1
   velocityXSmoothing: 0
+  stateAttack1: {fileID: 11400000, guid: e6699f383d63c4b4480e24c8a3b595ac, type: 2}
+  stateAttack2: {fileID: 11400000, guid: a48bcf7e44f3041fca9f2c2b4b4ffcd5, type: 2}
+  stateAttack3: {fileID: 11400000, guid: 13a16dd5fd5224ff6907c1baf85ab17e, type: 2}
+  stateGrounded: {fileID: 11400000, guid: 3eddafb06c3a94659bfbb4eba7b45bc6, type: 2}
+  stateCrouch: {fileID: 11400000, guid: 95920ef8476a34122a35a2edcdd93097, type: 2}
+  stateAirborne: {fileID: 11400000, guid: 4a9ce9482d5ac459f898bd0d625f3380, type: 2}
+  stateParryStance: {fileID: 11400000, guid: 32f97f180d82e4a9ba5a5a40ba7298f2, type: 2}
+  stateParryAction: {fileID: 11400000, guid: 0a2a2afb5632048dea2cbf67048e4e0a, type: 2}
 --- !u!114 &949882973
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,18 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ManfredGrounded : FSM2.State
+[CreateAssetMenu(fileName = "ManfredGrounded", menuName = "ManfredStates/ManfredGrounded")]
+public class ManfredGrounded : ManfredStates.ManfredState0Param
 {
 
-  private Manfred manfred;
+  [SerializeField]
+  private float jumpPower;
 
   private float attackCooldown = 0.05f;
   private float timeInState = 0.25f;
-
-  public ManfredGrounded(Manfred manfred)
-  {
-    this.manfred = manfred;
-  }
 
   public override void Enter()
   {
@@ -26,27 +23,27 @@ public class ManfredGrounded : FSM2.State
 
     if (manfred.playerInput.GetDidPressJumpBuffered())
     {
-      manfred.velocity.y = manfred.groundedJumpPower;
-      this.fsm.ChangeState(manfred.stateAirborne);
+      manfred.velocity.y = jumpPower;
+      manfred.fsm.ChangeState(manfred.stateAirborne, manfred.stateAirborne);
       return;
     }
 
     if (manfred.playerInput.GetHorizInput() == 0f && manfred.playerInput.GetVerticalInput() < 0)
     {
       manfred.velocity.x = 0;
-      this.fsm.ChangeState(manfred.stateCrouch);
+      manfred.fsm.ChangeState(manfred.stateCrouch, manfred.stateCrouch);
       return;
     }
 
     if (timeInState >= attackCooldown && manfred.playerInput.GetDidPressAttack())
     {
-      this.fsm.ChangeState(manfred.stateAttack1);
+      manfred.fsm.ChangeState(manfred.stateAttack1, manfred.stateAttack1);
       return;
     }
 
     if (manfred.playerInput.GetDidPressParry())
     {
-      this.fsm.ChangeState(manfred.stateParryStance);
+      manfred.fsm.ChangeState(manfred.stateParryStance, manfred.stateParryStance);
       return;
     }
 
@@ -72,8 +69,7 @@ public class ManfredGrounded : FSM2.State
     PlayerController.CollisionInfo collisionInfo = manfred.controller.GetCollisions();
     if (!collisionInfo.below)
     {
-      this.fsm.ChangeState(manfred.stateAirborne);
-      return;
+      manfred.fsm.ChangeState(manfred.stateAirborne, manfred.stateAirborne);
     }
   }
 

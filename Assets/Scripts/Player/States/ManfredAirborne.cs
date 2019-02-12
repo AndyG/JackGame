@@ -2,17 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ManfredAirborne : FSM2.State
+[CreateAssetMenu(fileName = "ManfredAirborne", menuName = "PlayerStates/ManfredAirborne")]
+public class ManfredAirborne : ManfredStates.ManfredState0Param
 {
 
-  private Manfred manfred;
-
   private float airborneFloatingThreshold = 7;
-
-  public ManfredAirborne(Manfred manfred)
-  {
-    this.manfred = manfred;
-  }
 
   public override void Update()
   {
@@ -43,8 +37,7 @@ public class ManfredAirborne : FSM2.State
     if (manfred.controller.GetCollisions().below)
     {
       manfred.velocity.y = 0f;
-      this.fsm.ChangeState(manfred.stateGrounded);
-      return;
+      manfred.fsm.ChangeState(manfred.stateGrounded, manfred.stateGrounded);
     }
   }
 
