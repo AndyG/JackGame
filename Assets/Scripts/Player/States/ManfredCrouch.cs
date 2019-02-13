@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ManfredCrouch", menuName = "ManfredStates/ManfredCrouch")]
 public class ManfredCrouch : ManfredStates.ManfredState0Param
 {
 
   [SerializeField]
   private float jumpPower;
 
-  public override void Update()
+  public override void Tick()
   {
     if (manfred.playerInput.GetDidPressJumpBuffered())
     {

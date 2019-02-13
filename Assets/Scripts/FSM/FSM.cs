@@ -54,11 +54,11 @@ public class FSM<C, S> where S : FSMState<C>
     if (ChangeStateBase(_newState)) enterable.Enter(p0, p1, p2);
   }
 
-  public void UpdateCurrentState()
+  public void TickCurrentState()
   {
     if (currentState != null)
     {
-      currentState.Update();
+      currentState.Tick();
     }
   }
 }

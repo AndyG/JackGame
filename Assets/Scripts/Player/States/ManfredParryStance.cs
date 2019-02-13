@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ManfredParryStance", menuName = "ManfredStates/ManfredParryStance")]
 public class ManfredParryStance : ManfredStates.ManfredState0Param
 {
 

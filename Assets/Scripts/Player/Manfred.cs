@@ -55,7 +55,7 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   void Update()
   {
     playerInput.Update();
-    fsm.UpdateCurrentState();
+    fsm.TickCurrentState();
     animationManager.Update();
     transform.localScale = new Vector3(IsFacingDefaultDirection() ? 1f : -1f, 1f, 1f);
   }

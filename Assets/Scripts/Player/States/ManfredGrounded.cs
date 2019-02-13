@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ManfredGrounded", menuName = "ManfredStates/ManfredGrounded")]
 public class ManfredGrounded : ManfredStates.ManfredState0Param
 {
 
@@ -17,7 +16,7 @@ public class ManfredGrounded : ManfredStates.ManfredState0Param
     timeInState = 0f;
   }
 
-  public override void Update()
+  public override void Tick()
   {
     timeInState += Time.deltaTime;
 

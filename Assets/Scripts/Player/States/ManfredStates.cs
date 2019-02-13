@@ -14,7 +14,7 @@ public class ManfredStates
     string GetAnimation();
   }
 
-  public abstract class ManfredState0Param : ScriptableObject, IManfredState, Enterable0Param
+  public abstract class ManfredState0Param : MonoBehaviour, IManfredState, Enterable0Param
   {
     protected Manfred manfred;
 
@@ -25,7 +25,7 @@ public class ManfredStates
 
     // FSM methods
     public virtual void Enter() { }
-    public virtual void Update() { }
+    public virtual void Tick() { }
     public virtual void Exit() { }
     public virtual void OnMessage(string message) { }
 
@@ -36,7 +36,7 @@ public class ManfredStates
     public virtual string GetAnimation() => GetAnimationDefaultImpl();
   }
 
-  public abstract class ManfredState1Param<T0> : ScriptableObject, IManfredState, Enterable1Param<T0>
+  public abstract class ManfredState1Param<T0> : MonoBehaviour, IManfredState, Enterable1Param<T0>
   {
     protected Manfred manfred;
 
@@ -47,7 +47,7 @@ public class ManfredStates
 
     // FSM methods
     public virtual void Enter(T0 param0) { }
-    public virtual void Update() { }
+    public virtual void Tick() { }
     public virtual void Exit() { }
     public virtual void OnMessage(string message) { }
 
@@ -58,7 +58,7 @@ public class ManfredStates
     public virtual string GetAnimation() => GetAnimationDefaultImpl();
   }
 
-  public abstract class ManfredState2Params<T0, T1> : ScriptableObject, IManfredState, Enterable2Param<T0, T1>
+  public abstract class ManfredState2Params<T0, T1> : MonoBehaviour, IManfredState, Enterable2Param<T0, T1>
   {
     protected Manfred manfred;
 
@@ -69,7 +69,7 @@ public class ManfredStates
 
     // FSM methods
     public virtual void Enter(T0 param0, T1 param1) { }
-    public virtual void Update() { }
+    public virtual void Tick() { }
     public virtual void Exit() { }
     public virtual void OnMessage(string message) { }
 
@@ -91,7 +91,7 @@ public class ManfredStates
 
     // FSM methods
     public virtual void Enter(T0 param0, T1 param1, T2 param2) { }
-    public virtual void Update() { }
+    public virtual void Tick() { }
     public virtual void Exit() { }
     public virtual void OnMessage(string message) { }
 

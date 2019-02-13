@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ManfredAirborne", menuName = "PlayerStates/ManfredAirborne")]
 public class ManfredAirborne : ManfredStates.ManfredState0Param
 {
 
   private float airborneFloatingThreshold = 7;
 
-  public override void Update()
+  public override void Tick()
   {
     if (manfred.velocity.y > manfred.minJumpVelocity && manfred.playerInput.GetDidReleaseJump())
     {

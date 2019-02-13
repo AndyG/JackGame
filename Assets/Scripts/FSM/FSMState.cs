@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface FSMState<C>
 {
-  void Update();
+  void Tick();
   void Exit();
   void BindContext(C context);
 }

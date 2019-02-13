@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ManfredAttack2", menuName = "ManfredStates/ManfredAttack2")]
 public class ManfredAttack2 : ManfredStates.ManfredState0Param
 {
 
@@ -15,7 +14,7 @@ public class ManfredAttack2 : ManfredStates.ManfredState0Param
     lockout = false;
   }
 
-  public override void Update()
+  public override void Tick()
   {
     if (manfred.playerInput.GetDidPressAttack())
     {

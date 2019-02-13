@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ManfredParryAction", menuName = "ManfredStates/ManfredParryAction")]
 public class ManfredParryAction : ManfredStates.ManfredState2Params<GameObject, Vector3>
 {
 
@@ -22,7 +21,7 @@ public class ManfredParryAction : ManfredStates.ManfredState2Params<GameObject, 
     this.hasSpawnedObject = false;
   }
 
-  public override void Update()
+  public override void Tick()
   {
     if (!hasSpawnedObject)
     {
