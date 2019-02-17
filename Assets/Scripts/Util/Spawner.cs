@@ -5,14 +5,7 @@ using UnityEngine;
 /**
  Can spawn an object.
  */
-public class Spawner : MonoBehaviour
+public interface Spawner
 {
-
-  [SerializeField]
-  private GameObject spawnObject;
-
-  public void Spawn(Quaternion rotation)
-  {
-    GameObject.Instantiate(this.spawnObject, this.transform.position, rotation);
-  }
+  void Spawn(Vector3 position, Quaternion rotation);
 }

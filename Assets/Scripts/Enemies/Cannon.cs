@@ -9,10 +9,21 @@ public class Cannon : MonoBehaviour
   private Spawner spawner;
   private Animator animator;
 
+  private FireballPool fireballPool;
+
   [SerializeField]
   private float interval = 1;
 
+  [SerializeField]
+  GameObject spawnPosition;
+
   private float timeUntilShot;
+
+  void Awake()
+  {
+    fireballPool = FindObjectOfType<FireballPool>();
+  }
+
   void Start()
   {
     spawner = GetComponentInChildren<Spawner>();
@@ -34,6 +45,8 @@ public class Cannon : MonoBehaviour
   private void DoShoot()
   {
     animator.SetTrigger("Shoot");
-    spawner.Spawn(transform.rotation);
+    Fireball fireball = fireballPool.Get();
+    fireball.transform.position = this.spawnPosition.transform.position;
+    fireball.transform.rotation = this.transform.rotation;
   }
 }

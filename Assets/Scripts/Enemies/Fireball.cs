@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(HitboxManager))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class Fireball : MonoBehaviour
 {
 
@@ -10,6 +11,7 @@ public class Fireball : MonoBehaviour
   private bool debug = false;
 
   private HitboxManager hitboxManager;
+  private SpriteRenderer spriteRenderer;
 
   [SerializeField]
   private float velocity;
@@ -17,20 +19,37 @@ public class Fireball : MonoBehaviour
   [SerializeField]
   private GameObject parrySpawnObjectPrototype;
 
+  [SerializeField]
+  private float timeToLive = 50f;
+
   private static Vector3 invertedLocalScale = new Vector3(-1f, 1f, 1f);
+
+  private FireballPool fireballPool;
+
+  private float timeAlive = 0f;
+
+  void OnEnable()
+  {
+    this.timeAlive = 0f;
+  }
 
   void Awake()
   {
     hitboxManager = GetComponent<HitboxManager>();
+    spriteRenderer = GetComponent<SpriteRenderer>();
+    fireballPool = FindObjectOfType<FireballPool>();
   }
 
   void Update()
   {
-    transform.Translate(-transform.right * velocity * Time.deltaTime, Space.World);
-    if (debug)
+    timeAlive += Time.deltaTime;
+    if (timeAlive > timeToLive)
     {
-      Debug.Log(transform.right);
+      fireballPool.ReturnObject(this);
+      return;
     }
+
+    transform.Translate(-transform.right * velocity * Time.deltaTime, Space.World);
 
     List<Hurtable> hurtables = hitboxManager.GetOverlappedHurtables();
     if (hurtables.Count > 0)
@@ -39,7 +58,7 @@ public class Fireball : MonoBehaviour
       HurtInfo hurtInfo = hurtable.OnHit(new HitInfo(this.transform.position, this.parrySpawnObjectPrototype));
       if (hurtInfo.hitConnected)
       {
-        Destroy(gameObject);
+        fireballPool.ReturnObject(this);
       }
     }
 
