@@ -41,7 +41,19 @@ public class ManfredParryAction : ManfredStates.ManfredState2Params<GameObject, 
 
   private void SpawnObject()
   {
-    GameObject.Instantiate(spawnObject, parryPosition, Quaternion.AngleAxis(-30, Vector3.forward));
+    GameObject gameObject = GameObject.Instantiate(spawnObject, parryPosition, Quaternion.identity);
+    Directable directable = gameObject.GetComponent<Directable>();
+
+    if (directable != null) {
+      directable.DirectToward(GetInputDirection());
+    }
     hasSpawnedObject = true;
+  }
+
+  private Vector2 GetInputDirection() {
+    float rawHorizontalInput = manfred.playerInput.GetHorizInputRaw();
+    float rawVerticalInput = manfred.playerInput.GetVerticalInputRaw();
+    Vector2 direction = new Vector2(rawHorizontalInput, rawVerticalInput).normalized;
+    return direction;
   }
 }
