@@ -163,7 +163,7 @@ MonoBehaviour:
   velocity: 10
   parrySpawnObjectPrototype: {fileID: 1336177206820765068, guid: 19515ec095d2e48b387f4ef8de096626,
     type: 3}
-  timeToLive: 1
+  timeToLive: 2
 --- !u!114 &1706893923781539417
 MonoBehaviour:
   m_ObjectHideFlags: 0

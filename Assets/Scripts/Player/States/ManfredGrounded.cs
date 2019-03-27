@@ -11,6 +11,8 @@ public class ManfredGrounded : ManfredStates.ManfredState0Param
   private float attackCooldown = 0.05f;
   private float timeInState = 0.25f;
 
+  private bool didRunThisFrame = false;
+
   public override void Enter()
   {
     timeInState = 0f;
@@ -18,6 +20,7 @@ public class ManfredGrounded : ManfredStates.ManfredState0Param
 
   public override void Tick()
   {
+    didRunThisFrame = false;
     timeInState += Time.deltaTime;
 
     if (manfred.playerInput.GetDidPressJumpBuffered())
@@ -55,8 +58,10 @@ public class ManfredGrounded : ManfredStates.ManfredState0Param
       ref manfred.velocityXSmoothing,
       manfred.velocityXSmoothFactorGrounded);
 
-    // manfred.velocity.y = Mathf.Min(-0.1f, manfred.gravity * Time.deltaTime);
-    // Debug.Log("computed y velocity: " + manfred.velocity.y);
+    if (targetVelocityX != 0f) {
+      didRunThisFrame = true;
+    }
+
     manfred.velocity.y = manfred.gravity * Time.deltaTime;
 
     if (horizInput != 0f)
@@ -74,6 +79,6 @@ public class ManfredGrounded : ManfredStates.ManfredState0Param
 
   public override string GetAnimation()
   {
-    return "ManfredIdle";
+    return didRunThisFrame ? "ManfredRunning": "ManfredIdle";
   }
 }
