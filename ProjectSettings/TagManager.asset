@@ -19,8 +19,8 @@ TagManager:
   - Player
   - PlayerHurtbox
   - Transient
-  - 
-  - 
+  - Obstacles
+  - Projectiles
   - 
   - 
   - 

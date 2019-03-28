@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2166122424588641628}
   - component: {fileID: 6119576103985395823}
   - component: {fileID: 5480660970819310341}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: DeflectedFireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 1336177206820765068}
   m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0

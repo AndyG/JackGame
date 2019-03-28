@@ -8,7 +8,6 @@ using UnityEngine;
 public class Target : MonoBehaviour
 {
 
-
     [SerializeField]
     private float oscillateYRange = 2f;
 
