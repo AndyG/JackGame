@@ -18,19 +18,25 @@ public class Mirror : MonoBehaviour
         this.animator = GetComponent<Animator>();
     }
 
-    public void OnHit() {
+    public void OnHit(Directable other) {
         animator.SetBool("IsBouncing", true);
+        Vector2 otherDirection = other.GetDirection();
+        Vector2 newDirection;
+        if (mirrorType == MirrorType.HORIZONTAL) {
+            // flip the x direction
+            newDirection = new Vector2(otherDirection.x * -1, otherDirection.y);
+        } else {
+            // flip the y direction
+            newDirection = new Vector2(otherDirection.x, otherDirection.y * -1);
+        }
+        other.DirectToward(newDirection);
     }
 
     void OnBounceComplete() {
         animator.SetBool("IsBouncing", false);
     }
 
-    public MirrorType GetMirrorType() {
-        return mirrorType;
-    }
-
-    public enum MirrorType {
+    private enum MirrorType {
         HORIZONTAL,
         VERTICAL
     }

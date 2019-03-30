@@ -12,31 +12,66 @@ public class FireballDeflected : MonoBehaviour, Directable
 
   private Vector2 direction;
 
+  [SerializeField]
+  private float interactionCooldown = 0.1f;
+
+  private float currentInteractionCooldown;
+  private Rigidbody2D rb2d;
+
   void Start() {
     if (direction == null) {
-      direction = transform.right;
+      DirectToward(transform.right);
     }
+
+    currentInteractionCooldown = interactionCooldown;
+    rb2d = GetComponent<Rigidbody2D>();
   }
 
   void Update()
   {
-    transform.Translate(direction * speed * Time.deltaTime, Space.World);
+    currentInteractionCooldown += Time.deltaTime;
+  }
+
+  void FixedUpdate() {
+      Vector3 targetPosition = new Vector3(transform.position.x + direction.x, transform.position.y + direction.y, transform.position.z);
+      Vector3 smoothedNewPosition = Vector3.MoveTowards(transform.position, targetPosition, Time.fixedDeltaTime * speed);
+      rb2d.MovePosition(smoothedNewPosition);
   }
 
   public void DirectToward(Vector2 direction) {
-    this.direction = direction;
+    this.direction = direction.normalized;
   }
 
-  void OnColliderEnter2D(Collider2D other) {
-    bool handleHit = DidHitTarget(other) || DidHitMirror(other);
+  public Vector2 GetDirection() {
+    return direction;
   }
 
   void OnCollisionEnter2D() {
+    if (currentInteractionCooldown < interactionCooldown) {
+      return;
+    }
     Poof();
+    currentInteractionCooldown = 0f;
   }
 
   void OnTriggerEnter2D(Collider2D other) {
-    bool handleHit = DidHitTarget(other) || DidHitMirror(other);
+    if (currentInteractionCooldown < interactionCooldown) {
+      return;
+    }
+    bool handleHit = DidHitProjectileDestroyer(other) || DidHitTarget(other) || DidHitMirror(other);
+    if (handleHit) {
+      currentInteractionCooldown = 0f;
+    }
+  }
+
+  private bool DidHitProjectileDestroyer(Collider2D other) {
+    ProjectileDestroyer destroyer = other.GetComponent<ProjectileDestroyer>();
+    if (destroyer != null) {
+      Poof();
+      return true;
+    } 
+
+    return false;
   }
 
   private bool DidHitTarget(Collider2D other) {
@@ -56,17 +91,7 @@ public class FireballDeflected : MonoBehaviour, Directable
   private bool DidHitMirror(Collider2D other) {
     Mirror mirror = other.transform.gameObject.GetComponent<Mirror>();
     if (mirror != null) {
-      mirror.OnHit();
-
-      Mirror.MirrorType mirrorType = mirror.GetMirrorType();
-      Vector2 newDirection; 
-      if (mirrorType == Mirror.MirrorType.HORIZONTAL) {
-        newDirection = new Vector2(this.direction.x * -1, this.direction.y);
-      } else {
-        newDirection = new Vector2(this.direction.x, this.direction.y * -1);
-      }
-
-      DirectToward(newDirection);
+      mirror.OnHit(this);
       return true;
     }
     return false;
