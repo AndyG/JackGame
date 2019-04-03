@@ -26,7 +26,7 @@ public class CardManager : MonoBehaviour
 
     private void NotifyUIManagerCards() {
         if (uiManager != null) {
-            uiManager.SetCards(cards);
+            uiManager.SetCards(cards, percentTowardNextCard);
         }
     }
 }

@@ -7,35 +7,21 @@ public class UIManager : MonoBehaviour
 {
 
     [SerializeField]
-    private Image card1;
+    private UICard card1;
     [SerializeField]
-    private Image card2;
+    private UICard card2;
 
     public void SetCards(List<Card> cards, int percentTowardNextCard) {
         // assume always [0,2] cards
         if (cards.Count == 0) {
-            card1.enabled = false;
-            card2.enabled = false;
-            HandlePercent(percentTowardNextCard);
+            card1.SetData(null, percentTowardNextCard);
+            card2.SetData(null, 0);
         } else if (cards.Count == 1) {
-            BindCard(card1, cards[0]);
-            HandlePercent(percentTowardNextCard);
+            card1.SetData(cards[0], 0);
+            card2.SetData(null, percentTowardNextCard);
         } else if (cards.Count == 2) {
-            BindCard(card1, cards[0]);
-            BindCard(card2, cards[1]);
+            card1.SetData(cards[0], 0);
+            card2.SetData(cards[1], 0);
         }
-    }
-
-    private void BindCard(Image image, Card card) {
-        if (card != null) {
-            image.sprite = card.cardArt;
-            image.enabled = true;
-        } else {
-            image.enabled = false;
-        }
-    }
-
-    private void HandlePercent(int percentTowardNextCard) {
-        
     }
 }

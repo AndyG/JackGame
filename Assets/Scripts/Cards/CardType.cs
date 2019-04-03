@@ -4,5 +4,6 @@ using UnityEngine;
 
 public enum CardType
 {
-    DEATH
+    DEATH,
+    LOVER
 }
