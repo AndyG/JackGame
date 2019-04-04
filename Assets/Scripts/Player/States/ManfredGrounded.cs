@@ -23,6 +23,12 @@ public class ManfredGrounded : ManfredStates.ManfredState0Param
     didRunThisFrame = false;
     timeInState += Time.deltaTime;
 
+    if (manfred.playerInput.GetDidPressSiphon())
+    {
+      manfred.velocity.x = 0;
+      manfred.fsm.ChangeState(manfred.stateSiphonStart, manfred.stateSiphonStart);
+    }
+
     if (manfred.playerInput.GetDidPressJumpBuffered())
     {
       manfred.velocity.y = jumpPower;
@@ -58,7 +64,8 @@ public class ManfredGrounded : ManfredStates.ManfredState0Param
       ref manfred.velocityXSmoothing,
       manfred.velocityXSmoothFactorGrounded);
 
-    if (targetVelocityX != 0f) {
+    if (targetVelocityX != 0f)
+    {
       didRunThisFrame = true;
     }
 
@@ -79,6 +86,6 @@ public class ManfredGrounded : ManfredStates.ManfredState0Param
 
   public override string GetAnimation()
   {
-    return didRunThisFrame ? "ManfredRunning": "ManfredIdle";
+    return didRunThisFrame ? "ManfredRunning" : "ManfredIdle";
   }
 }

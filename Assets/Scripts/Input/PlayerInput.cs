@@ -30,7 +30,7 @@ public class PlayerInput : ScriptableObject
   private bool didPressAttack;
   private bool didPressParry;
   private bool didPressSiphon;
-  private bool didReleaseSiphon;
+  private bool isHoldingSiphon;
 
   private ActionBuffer actionBuffer;
 
@@ -51,7 +51,7 @@ public class PlayerInput : ScriptableObject
     didPressAttack = _GetDidPressAttack();
     didPressParry = _GetDidPressParry();
     didPressSiphon = _GetDidPressSiphon();
-    didReleaseSiphon = _GetDidReleaseSiphon();
+    isHoldingSiphon = _GetIsHoldingSiphon();
 
     if (didPressJump)
     {
@@ -72,7 +72,7 @@ public class PlayerInput : ScriptableObject
     didPressAttack = false;
     didPressParry = false;
     didPressSiphon = false;
-    didReleaseSiphon = false;
+    isHoldingSiphon = false;
     horizInputRaw = 0f;
     verticalInputRaw = 0f;
   }
@@ -88,7 +88,7 @@ public class PlayerInput : ScriptableObject
   public bool GetDidPressAttack() => didPressAttack;
   public bool GetDidPressParry() => didPressParry;
   public bool GetDidPressSiphon() => didPressSiphon;
-  public bool GetDidReleaseSiphon() => didReleaseSiphon;
+  public bool GetIsHoldingSiphon() => isHoldingSiphon;
   #endregion
 
   #region Get raw input
@@ -124,7 +124,7 @@ public class PlayerInput : ScriptableObject
   private bool _GetDidPressAttack() => player.GetButtonDown("PrimaryAttack");
   private bool _GetDidPressParry() => player.GetButtonDown("Parry");
   private bool _GetDidPressSiphon() => player.GetButtonDown("Siphon");
-  private bool _GetDidReleaseSiphon() => player.GetButtonUp("Siphon");
+  private bool _GetIsHoldingSiphon() => player.GetButton("Siphon");
   #endregion
 
   #region Buffer keys

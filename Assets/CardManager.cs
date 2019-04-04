@@ -4,29 +4,40 @@ using UnityEngine;
 
 public class CardManager : MonoBehaviour
 {
-    [SerializeField]
-    private List<Card> cards;
+  [SerializeField]
+  private List<Card> cards;
 
-    [SerializeField]
-    private int percentTowardNextCard = 0;
+  [SerializeField]
+  private int percentTowardNextCard = 0;
 
-    private UIManager uiManager;
+  private UIManager uiManager;
 
-    void Start() {
-        uiManager = (UIManager) FindObjectOfType(typeof(UIManager));
+  void Start()
+  {
+    uiManager = (UIManager)FindObjectOfType(typeof(UIManager));
+  }
+
+  void OnEnable()
+  {
+    NotifyUIManagerCards();
+  }
+
+  void OnValidate()
+  {
+    NotifyUIManagerCards();
+  }
+
+  public void AddPercentToCard(int percent)
+  {
+    this.percentTowardNextCard += percent;
+    NotifyUIManagerCards();
+  }
+
+  private void NotifyUIManagerCards()
+  {
+    if (uiManager != null)
+    {
+      uiManager.SetCards(cards, percentTowardNextCard);
     }
-
-    void OnEnable() {
-        NotifyUIManagerCards();
-    }
-
-    void OnValidate() {
-        NotifyUIManagerCards();
-    }
-
-    private void NotifyUIManagerCards() {
-        if (uiManager != null) {
-            uiManager.SetCards(cards, percentTowardNextCard);
-        }
-    }
+  }
 }

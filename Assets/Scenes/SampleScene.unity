@@ -7014,7 +7014,7 @@ PrefabInstance:
     - target: {fileID: 5119962803402350420, guid: 6b59b187130945d4e94b05cd06717d38,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b59b187130945d4e94b05cd06717d38, type: 3}
@@ -7154,10 +7154,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 949882973, guid: 8a6f138910f32416aa3b3ed9b87ee251, type: 3}
-      propertyPath: layerMask.m_Bits
-      value: 2049
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a6f138910f32416aa3b3ed9b87ee251, type: 3}
 --- !u!1001 &9157099782497055697
@@ -7171,6 +7167,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cannon
+      objectReference: {fileID: 0}
+    - target: {fileID: 3664237278522913984, guid: 9124c8151d1144361a7159d6ee4d9cb6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1518258480137463484, guid: 9124c8151d1144361a7159d6ee4d9cb6,
         type: 3}

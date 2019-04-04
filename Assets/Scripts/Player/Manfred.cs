@@ -10,6 +10,7 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   public AnimationManager animationManager;
   public PlayerInput playerInput;
   public PlayerController controller;
+  public CardManager cardManager;
 
   public float gravity;
   public Vector2 velocity = new Vector2(0f, 0f);
@@ -36,6 +37,7 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   public ManfredParryAction stateParryAction;
   public ManfredSiphonStart stateSiphonStart;
   public ManfredSiphonRecovery stateSiphonRecovery;
+  public ManfredSiphonActive stateSiphonActive;
 
   void Awake()
   {
@@ -46,6 +48,7 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   {
     animator = GetComponent<Animator>();
     controller = GetComponent<PlayerController>();
+    cardManager = (CardManager)FindObjectOfType(typeof(CardManager));
 
     animationManager = new AnimationManager(animator, this);
 
