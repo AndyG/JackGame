@@ -34,6 +34,8 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   public ManfredAirborne stateAirborne;
   public ManfredParryStance stateParryStance;
   public ManfredParryAction stateParryAction;
+  public ManfredSiphonStart stateSiphonStart;
+  public ManfredSiphonRecovery stateSiphonRecovery;
 
   void Awake()
   {
