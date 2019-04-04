@@ -5114,6 +5114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cards: []
   percentTowardNextCard: 0
+  cardTypeMapper: {fileID: 11400000, guid: 8cf05ef3d298245d091436abb48a5f90, type: 2}
 --- !u!4 &1163300493
 Transform:
   m_ObjectHideFlags: 0
