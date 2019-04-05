@@ -32,8 +32,11 @@ public class SiphonDroplet : MonoBehaviour, SiphonSource
     this.collectCollider = GetComponent<Collider2D>();
   }
 
+  public void SetInitialVelocity(Vector3 velocity) {
+    this.velocity = velocity;
+  }
+
   void Update() {
-    TimeManagerSingleton.Instance.SetTimeScale(0f);
     if (isStopping) {
       this.velocity = Vector3.Lerp(velocity, Vector3.zero, stopLerpFactor);
       if (this.velocity.magnitude < 0.05f) {

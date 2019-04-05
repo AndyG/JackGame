@@ -210,6 +210,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterDetector: {fileID: 7803137206706545357}
   state: 0
+  siphonSourcePosition: {fileID: 6741024115570024758}
+  spawnDropletCooldown: 0.1
+  dropletPrototype: {fileID: 6151072520936868065, guid: 42e2268d7d3b9e54381e183477951a34,
+    type: 3}
 --- !u!61 &7511277232152931032
 BoxCollider2D:
   m_ObjectHideFlags: 0
