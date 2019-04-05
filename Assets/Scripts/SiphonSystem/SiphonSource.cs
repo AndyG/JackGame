@@ -2,17 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SiphonSource : MonoBehaviour
+public interface SiphonSource
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void OnSiphoned(Vector3 siphonPosition, float siphonForce);
+    void OnSiphonStopped();
 }

@@ -25,11 +25,12 @@ public class ManfredSiphonActive : ManfredStates.ManfredState0Param
     Collider2D[] colliders = Physics2D.OverlapCircleAll(manfred.siphonSinkTransform.position, siphonRadius, siphonLayerMask);
     for (int i = 0; i < colliders.Length; i++) {
       Collider2D collider = colliders[i];
-      SiphonDroplet droplet = collider.GetComponent<SiphonDroplet>();
-      if (droplet != null) {
-          droplet.AttractToward(manfred.siphonSinkTransform.position, attractForce);
+      SiphonSource source = collider.GetComponent<SiphonSource>();
+      if (source != null) {
+          source.OnSiphoned(manfred.siphonSinkTransform.position, attractForce);
 
-          if (ShouldCollectDroplet(droplet)) {
+          SiphonDroplet droplet = source as SiphonDroplet;
+          if (droplet != null && ShouldCollectDroplet(droplet)) {
             CollectDroplet(droplet);
           }
         }

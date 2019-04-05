@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Collider2D))]
-public class SiphonDroplet : MonoBehaviour
+public class SiphonDroplet : MonoBehaviour, SiphonSource
 {
 
   private Rigidbody2D rb;
@@ -43,8 +43,16 @@ public class SiphonDroplet : MonoBehaviour
       }
     }
   }
+  
+  public void OnSiphoned(Vector3 siphonPosition, float siphonForce) {
+    AttractToward(siphonPosition, siphonForce);
+  }
 
-  public void AttractToward(Vector2 targetPosition, float attractForce)
+  public void OnSiphonStopped() {
+    OnAttractionStopped();
+  }
+
+  private void AttractToward(Vector2 targetPosition, float attractForce)
   {
     isStopping = false;
     Vector3 direction = ((Vector3)targetPosition - transform.position).normalized;
