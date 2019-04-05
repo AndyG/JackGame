@@ -41,7 +41,7 @@ public class CardManager : MonoBehaviour
     {
       Card card = GenerateNextCard();
       this.cards.Add(card);
-      this.percentTowardNextCard = 0;
+      this.percentTowardNextCard = this.percentTowardNextCard - 100; // assumes you never got 200+ percent at once
     }
     NotifyUIManagerCards();
   }

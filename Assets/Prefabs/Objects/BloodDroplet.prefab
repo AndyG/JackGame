@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4122850686339998732}
   - component: {fileID: 6151782875996057435}
   - component: {fileID: 2493084966388068736}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: BloodDroplet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,8 +69,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1177127511
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 82e11d453d73144199055780f0d25a71, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -91,7 +91,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6151072520936868065}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -114,7 +114,7 @@ Animator:
   m_GameObject: {fileID: 6151072520936868065}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7b1a7053bf527464585a296de732d096, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -135,6 +135,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90919277c0b4e4f96ac28208be7cd8a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  percentContained: 25
+  maxVelocity: 25
+  stopLerpFactor: 0.05
 --- !u!61 &2493084966388068736
 BoxCollider2D:
   m_ObjectHideFlags: 0

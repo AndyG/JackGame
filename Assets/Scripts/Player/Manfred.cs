@@ -24,6 +24,8 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   // smoothing function
   public float velocityXSmoothing = 0f;
 
+  public Transform siphonSinkTransform;
+
   public FSM<Manfred, ManfredStates.IManfredState> fsm;
 
   [Header("States")]

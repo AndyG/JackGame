@@ -43,3 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f33f4c41bebc43c98011b6fcb173e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  siphonRadius: 5
+  siphonLayerMask:
+    serializedVersion: 2
+    m_Bits: 16384
+  attractForce: 10

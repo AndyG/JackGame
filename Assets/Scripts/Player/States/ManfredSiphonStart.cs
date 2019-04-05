@@ -20,29 +20,11 @@ public class ManfredSiphonStart : ManfredStates.ManfredState0Param
 
   private void DoSiphonSourceCheck()
   {
-    SiphonSource siphonSource = FindNearestSiphonSource();
-    // if (siphonSource != null)
-    // {
-    TransitionToSiphonActive(siphonSource);
-    // }
-    // else
-    // {
-    //   TransitionToSiphonRecovery();
-    // }
+    TransitionToSiphonActive();
   }
 
-  private void TransitionToSiphonActive(SiphonSource siphonSource)
+  private void TransitionToSiphonActive()
   {
     manfred.fsm.ChangeState(manfred.stateSiphonActive, manfred.stateSiphonActive);
-  }
-
-  private void TransitionToSiphonRecovery()
-  {
-    manfred.fsm.ChangeState(manfred.stateSiphonRecovery, manfred.stateSiphonRecovery);
-  }
-
-  private SiphonSource FindNearestSiphonSource()
-  {
-    return null;
   }
 }
