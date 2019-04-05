@@ -29,6 +29,8 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
 
     private int health = 500;
 
+    private HashSet<SiphonDroplet> droplets = new HashSet<SiphonDroplet>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,12 +54,16 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
             health -= 1;
             if (timeSinceSpawnedDroplet > spawnDropletCooldown) {
                 SiphonDroplet droplet = GameObject.Instantiate(dropletPrototype, siphonSourcePosition.position, Quaternion.identity).GetComponent<SiphonDroplet>();
+                droplets.Add(droplet);
                 droplet.SetInitialVelocity(Random.insideUnitCircle * 5);
                 timeSinceSpawnedDroplet = 0f;
             }
         }
 
         if (health <= 0) {
+            foreach (SiphonDroplet droplet in droplets) {
+                droplet.DisableSiphoning();
+            }
             ChangeState(State.DYING);
         }
     }
@@ -100,6 +106,10 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
         } else {
             ChangeState(State.RETREATING);
         }
+    }
+
+    public void OnFinishDying() {
+        GameObject.Destroy(this.transform.gameObject);
     }
 
     public string GetAnimation() {

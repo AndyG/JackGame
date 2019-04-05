@@ -135,9 +135,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90919277c0b4e4f96ac28208be7cd8a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  percentContained: 1
+  percentContained: 2
   maxVelocity: 25
   stopLerpFactor: 0.02
+  siphonDisableTime: 1.3
 --- !u!61 &2493084966388068736
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -25,6 +25,13 @@ public class SiphonDroplet : MonoBehaviour, SiphonSource
 
   private bool isStopping = false;
 
+  private bool isSiphonEnabled = true;
+
+  [SerializeField]
+  private float siphonDisableTime = 0.6f;
+
+  private float timeSinceSiphonDisabled = 0.3f;
+
   public void Awake()
   {
     this.rb = GetComponent<Rigidbody2D>();
@@ -37,6 +44,13 @@ public class SiphonDroplet : MonoBehaviour, SiphonSource
   }
 
   void Update() {
+    if (!isSiphonEnabled) {
+      timeSinceSiphonDisabled += Time.deltaTime;
+      if (timeSinceSiphonDisabled > siphonDisableTime) {
+        isSiphonEnabled = true;
+      }
+    }
+
     if (isStopping) {
       this.velocity = Vector3.Lerp(velocity, Vector3.zero, stopLerpFactor);
       if (this.velocity.magnitude < 0.05f) {
@@ -49,7 +63,9 @@ public class SiphonDroplet : MonoBehaviour, SiphonSource
   }
   
   public void OnSiphoned(Vector3 siphonPosition, float siphonForce) {
-    AttractToward(siphonPosition, siphonForce);
+    if (isSiphonEnabled) {
+      AttractToward(siphonPosition, siphonForce);
+    }
   }
 
   public void OnSiphonStopped() {
@@ -79,4 +95,10 @@ public class SiphonDroplet : MonoBehaviour, SiphonSource
   }
 
   public int GetPercentContained() => percentContained;
+
+  public void DisableSiphoning() {
+    isSiphonEnabled = false;
+    timeSinceSiphonDisabled = 0f;
+    OnAttractionStopped();
+  }
 }
