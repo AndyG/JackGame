@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, CharacterDetector.Listener
+public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, CharacterDetector.Listener, SiphonSource
 {
 
     private Animator animator;
@@ -28,6 +28,25 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
     void Update()
     {
         animationManager.Update();
+    }
+
+    public void OnSiphoned(Vector3 siphonPosition, float siphonForce) {
+        Debug.Log("siphoned");
+        if (state == State.IDLE) {
+            ChangeState(State.PAINED);
+        } else if (state == State.PAINED) {
+            // spawn droplet
+        }
+    }
+
+    public void OnSiphonStopped() {
+        if (state == State.PAINED) {
+            if (characterDetector.isPlayerDetected) {
+                ChangeState(State.IDLE);
+            } else {
+                ChangeState(State.RETREATING);
+            }
+        }
     }
 
     public void OnPlayerEntered() {
@@ -69,6 +88,8 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
                 return "TrashEnemyIdle";
             case State.RETREATING:
                 return "TrashEnemyRetreating";
+            case State.PAINED:
+                return "TrashEnemyPained";
         }
 
         return "TrashEnemyMound";
@@ -82,6 +103,7 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
         MOUND,
         EMERGING,
         IDLE,
-        RETREATING
+        RETREATING,
+        PAINED
     }
 }

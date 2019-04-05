@@ -33,6 +33,7 @@ public class SiphonDroplet : MonoBehaviour, SiphonSource
   }
 
   void Update() {
+    TimeManagerSingleton.Instance.SetTimeScale(0f);
     if (isStopping) {
       this.velocity = Vector3.Lerp(velocity, Vector3.zero, stopLerpFactor);
       if (this.velocity.magnitude < 0.05f) {
