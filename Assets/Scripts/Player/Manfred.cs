@@ -54,6 +54,10 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   public ManfredSiphonActive stateSiphonActive;
   public ManfredDead stateDead;
   public ManfredUseCard stateUseCard;
+  public ManfredWallCling stateWallCling;
+
+  // hack! get rid of this!
+  public float lockAirborneMovementTime;
 
   void Awake()
   {
@@ -65,8 +69,8 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
     animator = GetComponent<Animator>();
     controller = GetComponent<PlayerController>();
     hitboxManager = GetComponent<HitboxManager>();
-    sceneTransitioner = (SceneTransitioner) FindObjectOfType(typeof(SceneTransitioner));
-    effectsCanvas = (EffectsCanvas) FindObjectOfType(typeof(EffectsCanvas));
+    sceneTransitioner = (SceneTransitioner)FindObjectOfType(typeof(SceneTransitioner));
+    effectsCanvas = (EffectsCanvas)FindObjectOfType(typeof(EffectsCanvas));
 
     cardManager = (CardManager)FindObjectOfType(typeof(CardManager));
 
@@ -79,6 +83,7 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
 
   void Update()
   {
+    lockAirborneMovementTime -= Time.deltaTime;
     playerInput.Update();
     fsm.TickCurrentState();
     animationManager.Update();
@@ -96,7 +101,8 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   public HurtInfo OnHit(HitInfo hitInfo)
   {
     HurtInfo hurtInfo = fsm.currentState.OnHit(hitInfo);
-    if (hurtInfo.hitConnected) {
+    if (hurtInfo.hitConnected)
+    {
       fsm.ChangeState(stateDead, stateDead);
       StartCoroutine(DelayedRestartScene());
     }
@@ -111,7 +117,14 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
 
   public bool IsFacingDefaultDirection()
   {
-    return isFacingRight;
+    if (fsm.currentState.OverridesFacingDirection())
+    {
+      return fsm.currentState.IsFacingDefaultDirection();
+    }
+    else
+    {
+      return isFacingRight;
+    }
   }
 
   public void FaceMovementDirection()
@@ -119,7 +132,8 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
     isFacingRight = velocity.x >= 0f;
   }
 
-  private IEnumerator DelayedRestartScene() {
+  private IEnumerator DelayedRestartScene()
+  {
     yield return new WaitForSeconds(3f);
     sceneTransitioner.RestartScene();
   }

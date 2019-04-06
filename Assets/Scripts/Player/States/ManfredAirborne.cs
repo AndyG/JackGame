@@ -14,39 +14,56 @@ public class ManfredAirborne : ManfredStates.ManfredState0Param
       manfred.velocity.y = manfred.minJumpVelocity;
     }
 
-    // move
-    float horizInput = manfred.playerInput.GetHorizInput();
-    float targetVelocityX = horizInput * manfred.horizSpeed;
-    manfred.velocity.x = Mathf.SmoothDamp(
-      manfred.velocity.x,
-      targetVelocityX,
-      ref manfred.velocityXSmoothing,
-      manfred.velocityXSmoothFactorAirborne);
+    if (manfred.lockAirborneMovementTime <= 0f)
+    {
+      // move
+      float horizInput = manfred.playerInput.GetHorizInput();
+      float targetVelocityX = horizInput * manfred.horizSpeed;
+      manfred.velocity.x = Mathf.SmoothDamp(
+        manfred.velocity.x,
+        targetVelocityX,
+        ref manfred.velocityXSmoothing,
+        manfred.velocityXSmoothFactorAirborne);
 
-    manfred.velocity.y += manfred.gravity * Time.deltaTime;
+    }
 
-    if (horizInput != 0f)
+    if (manfred.velocity.x != 0f)
     {
       manfred.FaceMovementDirection();
     }
 
+    manfred.velocity.y += manfred.gravity * Time.deltaTime;
     manfred.controller.Move(manfred.velocity * Time.deltaTime);
 
-    if (manfred.playerInput.GetDidPressParry()) {
+    if (manfred.playerInput.GetDidPressParry())
+    {
       manfred.fsm.ChangeState(manfred.stateUseCard, manfred.stateUseCard);
       return;
     }
 
-    if (manfred.playerInput.GetDidPressSiphon()) {
+    if (manfred.playerInput.GetDidPressSiphon())
+    {
       manfred.fsm.ChangeState(manfred.stateSiphonStart, manfred.stateSiphonStart);
       return;
     }
 
     // check if hit ground
-    if (manfred.controller.GetCollisions().below)
+    PlayerController.CollisionInfo collisions = manfred.controller.GetCollisions();
+    if (collisions.below)
     {
       manfred.velocity.y = 0f;
       manfred.fsm.ChangeState(manfred.stateGrounded, manfred.stateGrounded);
+      return;
+    }
+
+    // check if hit ground
+    if (collisions.left || collisions.right)
+    {
+      manfred.velocity.x = 0f;
+      manfred.velocity.y = 0f;
+      bool isWallOnLeft = collisions.left;
+      manfred.fsm.ChangeState(manfred.stateWallCling, manfred.stateWallCling, isWallOnLeft);
+      return;
     }
   }
 
