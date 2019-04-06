@@ -22,6 +22,7 @@ public class CardManager : MonoBehaviour
   void Start()
   {
     uiManager = (UIManager)FindObjectOfType(typeof(UIManager));
+    NotifyUIManagerCards();
   }
 
   void OnEnable()
@@ -41,9 +42,24 @@ public class CardManager : MonoBehaviour
     {
       Card card = GenerateNextCard();
       this.cards.Add(card);
-      this.percentTowardNextCard = this.percentTowardNextCard - 100; // assumes you never got 200+ percent at once
+      if (this.cards.Count < 2) {
+        this.percentTowardNextCard = this.percentTowardNextCard - 100; // assumes you never got 200+ percent at once
+      } else {
+        this.percentTowardNextCard = 0;
+      }
     }
     NotifyUIManagerCards();
+  }
+
+  public CardType? ConsumeCard() {
+    if (this.cards.Count > 0) {
+      Card card = this.cards[0];
+      this.cards.RemoveAt(0);
+      NotifyUIManagerCards();
+      return card.cardType;
+    }
+
+    return null;
   }
 
   private Card GenerateNextCard()

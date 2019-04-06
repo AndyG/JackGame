@@ -51,7 +51,7 @@ public class ManfredGrounded : ManfredStates.ManfredState0Param
 
     if (manfred.playerInput.GetDidPressParry())
     {
-      manfred.fsm.ChangeState(manfred.stateParryStance, manfred.stateParryStance);
+      manfred.fsm.ChangeState(manfred.stateUseCard, manfred.stateUseCard);
       return;
     }
 

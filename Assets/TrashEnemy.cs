@@ -178,6 +178,12 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
         }
     }
 
+    public void OnDeathUsed() {
+        if (this.state != State.DYING) {
+            ChangeState(State.STUNNED);
+        }
+    }
+
     public string GetAnimation() {
         switch (state) {
             case State.MOUND:

@@ -21,6 +21,9 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   [System.NonSerialized]
   public SceneTransitioner sceneTransitioner;
 
+  [System.NonSerialized]
+  public EffectsCanvas effectsCanvas;
+
   public float gravity;
   public Vector2 velocity = new Vector2(0f, 0f);
   public float horizSpeed = 0.5f;
@@ -50,6 +53,7 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   public ManfredSiphonRecovery stateSiphonRecovery;
   public ManfredSiphonActive stateSiphonActive;
   public ManfredDead stateDead;
+  public ManfredUseCard stateUseCard;
 
   void Awake()
   {
@@ -62,6 +66,7 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
     controller = GetComponent<PlayerController>();
     hitboxManager = GetComponent<HitboxManager>();
     sceneTransitioner = (SceneTransitioner) FindObjectOfType(typeof(SceneTransitioner));
+    effectsCanvas = (EffectsCanvas) FindObjectOfType(typeof(EffectsCanvas));
 
     cardManager = (CardManager)FindObjectOfType(typeof(CardManager));
 

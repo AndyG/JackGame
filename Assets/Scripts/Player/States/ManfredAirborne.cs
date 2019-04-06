@@ -32,6 +32,16 @@ public class ManfredAirborne : ManfredStates.ManfredState0Param
 
     manfred.controller.Move(manfred.velocity * Time.deltaTime);
 
+    if (manfred.playerInput.GetDidPressParry()) {
+      manfred.fsm.ChangeState(manfred.stateUseCard, manfred.stateUseCard);
+      return;
+    }
+
+    if (manfred.playerInput.GetDidPressSiphon()) {
+      manfred.fsm.ChangeState(manfred.stateSiphonStart, manfred.stateSiphonStart);
+      return;
+    }
+
     // check if hit ground
     if (manfred.controller.GetCollisions().below)
     {
