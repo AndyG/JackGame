@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Cinemachine.CinemachineImpulseSource))]
 public class ManfredSiphonActive : ManfredStates.ManfredState0Param
 {
 
@@ -13,6 +14,12 @@ public class ManfredSiphonActive : ManfredStates.ManfredState0Param
   private float attractForce = 0.1f;
   [SerializeField]
   private float collectDistanceRadius = 0.1f;
+
+  private Cinemachine.CinemachineImpulseSource impulseSource;
+
+  void Start() {
+      this.impulseSource = GetComponent<Cinemachine.CinemachineImpulseSource>();
+  }
 
   public override void Tick()
   {
@@ -32,6 +39,7 @@ public class ManfredSiphonActive : ManfredStates.ManfredState0Param
           SiphonDroplet droplet = source as SiphonDroplet;
           if (droplet != null && ShouldCollectDroplet(droplet)) {
             CollectDroplet(droplet);
+            impulseSource.GenerateImpulse();
           }
         }
     }
