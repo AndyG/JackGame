@@ -11,10 +11,15 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   public AnimationManager animationManager;
   public PlayerInput playerInput;
   public PlayerController controller;
+
+  [System.NonSerialized]
   public CardManager cardManager;
 
   [System.NonSerialized]
   public HitboxManager hitboxManager;
+
+  [System.NonSerialized]
+  public SceneTransitioner sceneTransitioner;
 
   public float gravity;
   public Vector2 velocity = new Vector2(0f, 0f);
@@ -44,6 +49,7 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   public ManfredSiphonStart stateSiphonStart;
   public ManfredSiphonRecovery stateSiphonRecovery;
   public ManfredSiphonActive stateSiphonActive;
+  public ManfredDead stateDead;
 
   void Awake()
   {
@@ -55,6 +61,7 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
     animator = GetComponent<Animator>();
     controller = GetComponent<PlayerController>();
     hitboxManager = GetComponent<HitboxManager>();
+    sceneTransitioner = (SceneTransitioner) FindObjectOfType(typeof(SceneTransitioner));
 
     cardManager = (CardManager)FindObjectOfType(typeof(CardManager));
 
@@ -83,7 +90,13 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
 
   public HurtInfo OnHit(HitInfo hitInfo)
   {
-    return fsm.currentState.OnHit(hitInfo);
+    HurtInfo hurtInfo = fsm.currentState.OnHit(hitInfo);
+    if (hurtInfo.hitConnected) {
+      fsm.ChangeState(stateDead, stateDead);
+      StartCoroutine(DelayedRestartScene());
+    }
+
+    return hurtInfo;
   }
 
   public string GetAnimation()
@@ -99,5 +112,10 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   public void FaceMovementDirection()
   {
     isFacingRight = velocity.x >= 0f;
+  }
+
+  private IEnumerator DelayedRestartScene() {
+    yield return new WaitForSeconds(3f);
+    sceneTransitioner.RestartScene();
   }
 }

@@ -104,7 +104,6 @@ public class ManfredStates
 
   private static HurtInfo OnHitDefaultImpl(HitInfo hitInfo)
   {
-    TimeManagerSingleton.Instance.DoDramaticPause(0.2f);
     return new HurtInfo(true);
   }
 

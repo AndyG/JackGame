@@ -71,8 +71,13 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
         if (state == State.ATTACK && !didLandHit) {
           List<Hurtable> hurtables = hitboxManager.GetOverlappedHurtables();
           if (hurtables.Count > 0) {
-              didLandHit = true;
-              Debug.Log("got hurtable!");
+              HitInfo hitInfo = new HitInfo(transform.position, null);
+              foreach (Hurtable hurtable in hurtables) {
+                  if (hurtable.OnHit(hitInfo).hitConnected) {
+                      didLandHit = true;
+                      break;
+                  }
+              }
           }
           return;
         }
