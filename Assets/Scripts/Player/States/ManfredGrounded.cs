@@ -86,6 +86,6 @@ public class ManfredGrounded : ManfredStates.ManfredState0Param
 
   public override string GetAnimation()
   {
-    return didRunThisFrame ? "ManfredRunning" : "ManfredIdle";
+    return didRunThisFrame ? "VampRun" : "VampIdle";
   }
 }

@@ -63,6 +63,6 @@ public class ManfredAttack1 : ManfredStates.ManfredState0Param
 
   public override string GetAnimation()
   {
-    return "ManfredAttack1";
+    return "VampAttack1";
   }
 }

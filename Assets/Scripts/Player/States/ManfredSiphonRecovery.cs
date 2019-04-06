@@ -15,6 +15,6 @@ public class ManfredSiphonRecovery : ManfredStates.ManfredState0Param
 
   public override string GetAnimation()
   {
-    return "ManfredSiphonRecovery";
+    return "VampSiphonRecovery";
   }
 }

@@ -52,17 +52,13 @@ public class ManfredAirborne : ManfredStates.ManfredState0Param
 
   public override string GetAnimation()
   {
-    if (manfred.velocity.y > airborneFloatingThreshold)
+    if (manfred.velocity.y > 0)
     {
-      return "ManfredRising";
-    }
-    else if (manfred.velocity.y < -airborneFloatingThreshold)
-    {
-      return "ManfredFalling";
+      return "VampAirborneUp";
     }
     else
     {
-      return "ManfredAirborne";
+      return "VampAirborneDown";
     }
   }
 }

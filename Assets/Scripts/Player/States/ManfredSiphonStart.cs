@@ -15,7 +15,7 @@ public class ManfredSiphonStart : ManfredStates.ManfredState0Param
 
   public override string GetAnimation()
   {
-    return "ManfredSiphonStart";
+    return "VampSiphonStart";
   }
 
   private void DoSiphonSourceCheck()

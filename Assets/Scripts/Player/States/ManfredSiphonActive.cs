@@ -39,7 +39,7 @@ public class ManfredSiphonActive : ManfredStates.ManfredState0Param
 
   public override string GetAnimation()
   {
-    return "ManfredSiphonActive";
+    return "VampSiphonActive";
   }
 
   private bool ShouldCollectDroplet(SiphonDroplet droplet) {

@@ -20,7 +20,7 @@ public class ManfredUseCard : ManfredStates.ManfredState0Param
 
   public override string GetAnimation()
   {
-    return "ManfredUseCard";
+    return "VampUseCard";
   }
    
   public override void OnMessage(string message) {
