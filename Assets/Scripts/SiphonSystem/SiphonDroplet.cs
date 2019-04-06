@@ -21,6 +21,9 @@ public class SiphonDroplet : MonoBehaviour, SiphonSource
   [SerializeField]
   private float stopLerpFactor = 0.1f;
 
+  [SerializeField]
+  private LayerMask siphonSinkLayerMask;
+
   private Vector3 velocity = Vector3.zero;
 
   private bool isStopping = false;
@@ -39,36 +42,47 @@ public class SiphonDroplet : MonoBehaviour, SiphonSource
     this.collectCollider = GetComponent<Collider2D>();
   }
 
-  public void SetInitialVelocity(Vector3 velocity) {
+  public void SetInitialVelocity(Vector3 velocity)
+  {
     this.velocity = velocity;
   }
 
-  void Update() {
-    if (!isSiphonEnabled) {
+  void Update()
+  {
+    if (!isSiphonEnabled)
+    {
       timeSinceSiphonDisabled += Time.deltaTime;
-      if (timeSinceSiphonDisabled > siphonDisableTime) {
+      if (timeSinceSiphonDisabled > siphonDisableTime)
+      {
         isSiphonEnabled = true;
       }
     }
 
-    if (isStopping) {
+    if (isStopping)
+    {
       this.velocity = Vector3.Lerp(velocity, Vector3.zero, stopLerpFactor);
-      if (this.velocity.magnitude < 0.05f) {
+      if (this.velocity.magnitude < 0.05f)
+      {
         this.velocity = Vector3.zero;
         isStopping = false;
-      } else {
+      }
+      else
+      {
         transform.Translate(velocity * Time.deltaTime);
       }
     }
   }
-  
-  public void OnSiphoned(Vector3 siphonPosition, float siphonForce) {
-    if (isSiphonEnabled) {
+
+  public void OnSiphoned(Vector3 siphonPosition, float siphonForce)
+  {
+    if (isSiphonEnabled)
+    {
       AttractToward(siphonPosition, siphonForce);
     }
   }
 
-  public void OnSiphonStopped() {
+  public void OnSiphonStopped()
+  {
     OnAttractionStopped();
   }
 
@@ -78,27 +92,56 @@ public class SiphonDroplet : MonoBehaviour, SiphonSource
     Vector3 direction = ((Vector3)targetPosition - transform.position).normalized;
     velocity = velocity + (direction * attractForce);
     velocity = Vector3.ClampMagnitude(velocity, maxVelocity);
-    transform.Translate(velocity * Time.deltaTime);
+
+    // raycast to detect if there is a sink in the way
+    Vector3? sinkPosition = GetSinkPositionByVelocity();
+    if (sinkPosition.HasValue)
+    {
+      transform.position = sinkPosition.Value;
+    }
+    else
+    {
+      transform.Translate(velocity * Time.deltaTime);
+    }
   }
 
-  public void OnAttractionStopped() {
+  public void OnAttractionStopped()
+  {
     isStopping = true;
   }
 
-  public void OnCollected() {
+  public void OnCollected()
+  {
     animator.SetBool("IsBeingCollected", true);
     collectCollider.enabled = false;
   }
 
-  public void FinishCollect() {
+  public void FinishCollect()
+  {
     GameObject.Destroy(this.gameObject);
   }
 
   public int GetPercentContained() => percentContained;
 
-  public void DisableSiphoning() {
+  public void DisableSiphoning()
+  {
     isSiphonEnabled = false;
     timeSinceSiphonDisabled = 0f;
     OnAttractionStopped();
+  }
+
+  private Vector3? GetSinkPositionByVelocity()
+  {
+    Vector3 ray = velocity * Time.deltaTime;
+    RaycastHit2D hit = Physics2D.Raycast(transform.position, ray, ray.magnitude, siphonSinkLayerMask);
+    Debug.DrawRay(this.transform.position, ray, Color.green);
+    if (hit)
+    {
+      return hit.transform.position;
+    }
+    else
+    {
+      return null;
+    }
   }
 }

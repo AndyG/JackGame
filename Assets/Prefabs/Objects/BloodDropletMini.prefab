@@ -137,8 +137,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   percentContained: 2
   maxVelocity: 25
-  stopLerpFactor: 0.02
-  siphonDisableTime: 1
+  stopLerpFactor: 0.05
+  siphonSinkLayerMask:
+    serializedVersion: 2
+    m_Bits: 524288
+  siphonDisableTime: 0.5
 --- !u!61 &2493084966388068736
 BoxCollider2D:
   m_ObjectHideFlags: 0
