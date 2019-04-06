@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(HitboxManager))]
 public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtable
 {
 
@@ -11,6 +12,9 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   public PlayerInput playerInput;
   public PlayerController controller;
   public CardManager cardManager;
+
+  [System.NonSerialized]
+  public HitboxManager hitboxManager;
 
   public float gravity;
   public Vector2 velocity = new Vector2(0f, 0f);
@@ -50,6 +54,8 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   {
     animator = GetComponent<Animator>();
     controller = GetComponent<PlayerController>();
+    hitboxManager = GetComponent<HitboxManager>();
+
     cardManager = (CardManager)FindObjectOfType(typeof(CardManager));
 
     animationManager = new AnimationManager(animator, this);

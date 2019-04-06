@@ -9,6 +9,13 @@ public class RectHitbox : MonoBehaviour
   [SerializeField]
   public float attackRangeY = 3;
 
+  [SerializeField]
+  private bool isHitboxActive = false;
+
+  public bool IsHitboxActive() {
+    return isHitboxActive;
+  }
+
   public Collider2D[] GetColliders(LayerMask layerMask)
   {
     return Physics2D.OverlapBoxAll(transform.position, new Vector2(attackRangeX, attackRangeY), 0f, layerMask);
@@ -16,7 +23,9 @@ public class RectHitbox : MonoBehaviour
 
   void OnDrawGizmosSelected()
   {
-    Gizmos.color = Color.red;
-    Gizmos.DrawWireCube(transform.position, new Vector3(attackRangeX, attackRangeY));
+    if (isHitboxActive) {
+      Gizmos.color = Color.red;
+      Gizmos.DrawWireCube(transform.position, new Vector3(attackRangeX, attackRangeY));
+    }
   }
 }

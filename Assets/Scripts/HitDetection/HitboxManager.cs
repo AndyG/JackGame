@@ -15,13 +15,15 @@ public class HitboxManager : MonoBehaviour
     List<Hurtable> overlappedHurtables = new List<Hurtable>();
     foreach (RectHitbox hitbox in hitboxes)
     {
-      Collider2D[] colliders = hitbox.GetColliders(layerMask);
-      foreach (Collider2D collider in colliders)
-      {
-        Hurtable hurtable = collider.GetComponentInParent<Hurtable>();
-        if (hurtable != null)
+      if (hitbox != null && hitbox.IsHitboxActive()) {
+        Collider2D[] colliders = hitbox.GetColliders(layerMask);
+        foreach (Collider2D collider in colliders)
         {
-          overlappedHurtables.Add(hurtable);
+          Hurtable hurtable = collider.GetComponentInParent<Hurtable>();
+          if (hurtable != null)
+          {
+            overlappedHurtables.Add(hurtable);
+          }
         }
       }
     }

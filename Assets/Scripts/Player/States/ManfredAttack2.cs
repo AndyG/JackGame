@@ -7,11 +7,13 @@ public class ManfredAttack2 : ManfredStates.ManfredState0Param
 
   private bool allowNextAttack = false;
   private bool lockout = false;
+  private bool didLandAttack = false;
 
   public override void Enter()
   {
     allowNextAttack = false;
     lockout = false;
+    didLandAttack = false;
   }
 
   public override void Tick()
@@ -25,6 +27,22 @@ public class ManfredAttack2 : ManfredStates.ManfredState0Param
       else if (!lockout)
       {
         manfred.fsm.ChangeState(manfred.stateAttack3, manfred.stateAttack3);
+      }
+    }
+
+    List<Hurtable> hurtables = manfred.hitboxManager.GetOverlappedHurtables();
+    if (hurtables.Count > 0 && !didLandAttack) {
+      HitInfo hitInfo = new HitInfo(manfred.transform.position, false);
+      foreach(Hurtable hurtable in hurtables) {
+        HurtInfo hurtInfo = hurtable.OnHit(hitInfo);
+        didLandAttack = didLandAttack || hurtInfo.hitConnected;
+        if (hurtInfo.hitConnected) {
+          Debug.Log("landed attack!");
+        }
+      }
+
+      if (didLandAttack) {
+        TimeManagerSingleton.Instance.DoDramaticPause(0.2f);
       }
     }
   }

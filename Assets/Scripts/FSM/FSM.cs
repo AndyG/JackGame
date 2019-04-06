@@ -17,7 +17,7 @@ public class FSM<C, S> where S : FSMState<C>
 
   bool ChangeStateBase(S _newState)
   {
-    Debug.Log("change state base: " + _newState);
+    // Debug.Log("change state base: " + _newState);
     //Exit the current state
     if (currentState != null)
     {

@@ -28,7 +28,7 @@ public class SiphonDroplet : MonoBehaviour, SiphonSource
   private bool isSiphonEnabled = true;
 
   [SerializeField]
-  private float siphonDisableTime = 0.6f;
+  private float siphonDisableTime = 0.1f;
 
   private float timeSinceSiphonDisabled = 0.3f;
 

@@ -24,9 +24,9 @@ TagManager:
   - ProjectileDestroyers
   - Collectible
   - PlayerDetector
-  - 
-  - 
-  - 
+  - EnemyHitbox
+  - EnemyHurtbox
+  - PlayerHitbox
   - 
   - 
   - 
