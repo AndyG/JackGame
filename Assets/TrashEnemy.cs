@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(HitboxManager))]
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Cinemachine.CinemachineImpulseSource))]
-public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, CharacterDetector.Listener, SiphonSource, Hurtable
+public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, CharacterDetector.Listener, SiphonSource, Hurtable, EnemyManager.Listener
 {
 
   private Animator animator;
@@ -35,11 +35,21 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
   private float spawnDropletCooldown = 0.1f;
   [SerializeField]
   private GameObject dropletPrototype;
+  [SerializeField]
+  private int health = 60;
+
+  [Header("AI")]
+  [SerializeField]
+  private bool isBoss;
+  private int bossRetreatThreshold;
+  private bool hasBossRetreated;
+  private bool isRumbling;
+
+  private EnemyManager enemyManager;
 
   private AnimationManager animationManager;
 
   private float timeSinceSpawnedDroplet;
-  private int health = 60;
   private HashSet<SiphonDroplet> droplets = new HashSet<SiphonDroplet>();
   private float timeInState = 0f;
 
@@ -59,6 +69,17 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
     characterDetector.AddListener(this);
 
     this.defaultSpriteMaterial = spriteRenderer.material;
+    this.bossRetreatThreshold = this.health / 2;
+
+    enemyManager = (EnemyManager)FindObjectOfType(typeof(EnemyManager));
+    if (!isBoss)
+    {
+      enemyManager.IncrementTrashEnemies();
+    }
+    else
+    {
+      enemyManager.SetListener(this);
+    }
   }
 
   // Update is called once per frame
@@ -68,7 +89,7 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
     timeSinceSpawnedDroplet += Time.deltaTime;
     timeInState += Time.deltaTime;
 
-    if (state == State.ATTACK && !didLandHit)
+    if ((state == State.ATTACK || state == State.DOUBLE_ATTACK) && !didLandHit)
     {
       List<Hurtable> hurtables = hitboxManager.GetOverlappedHurtables();
       if (hurtables.Count > 0)
@@ -88,7 +109,14 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
 
     if (state == State.IDLE && timeInState >= timeTilAttack)
     {
-      ChangeState(State.ATTACK);
+      if (isBoss && hasBossRetreated)
+      {
+        ChangeState(State.DOUBLE_ATTACK);
+      }
+      else
+      {
+        ChangeState(State.ATTACK);
+      }
       return;
     }
 
@@ -114,16 +142,19 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
         droplets.Add(droplet);
         droplet.SetInitialVelocity(Random.insideUnitCircle * 5);
         timeSinceSpawnedDroplet = 0f;
+
+        if (health <= bossRetreatThreshold / 2 && isBoss && !hasBossRetreated)
+        {
+          ChangeState(State.RETREATING);
+          NotifyDropletsStopSiphoning();
+          hasBossRetreated = true;
+        }
       }
     }
 
     if (health <= 0)
     {
-      foreach (SiphonDroplet droplet in droplets)
-      {
-        droplet.DisableSiphoning();
-      }
-      droplets.Clear();
+      NotifyDropletsStopSiphoning();
       ChangeState(State.DYING);
     }
   }
@@ -139,7 +170,7 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
   public void OnPlayerEntered()
   {
     // Debug.Log("state: " + state);
-    if (state == State.MOUND)
+    if (state == State.MOUND && (!isBoss || enemyManager.IsBossUnlocked()))
     {
       ChangeState(State.EMERGING);
     }
@@ -177,6 +208,10 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
 
   public void OnFinishDying()
   {
+    if (!isBoss)
+    {
+      enemyManager.DecrementTrashEnemies();
+    }
     GameObject.Destroy(this.transform.gameObject);
   }
 
@@ -190,6 +225,14 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
     if (!didLandHit)
     {
       ChangeState(State.DIZZY);
+    }
+  }
+
+  public void Impulse()
+  {
+    if (isBoss)
+    {
+      impulseSource.GenerateImpulse();
     }
   }
 
@@ -214,7 +257,7 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
 
   public void OnDeathUsed()
   {
-    if (this.state != State.DYING)
+    if (this.state != State.DYING && (!isBoss || enemyManager.IsBossUnlocked()))
     {
       ChangeState(State.STUNNED);
     }
@@ -225,7 +268,14 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
     switch (state)
     {
       case State.MOUND:
-        return "TrashEnemyMound";
+        if (isRumbling)
+        {
+          return "TrashEnemyRumbling";
+        }
+        else
+        {
+          return "TrashEnemyMound";
+        }
       case State.EMERGING:
         return "TrashEnemyEmerging";
       case State.IDLE:
@@ -238,6 +288,8 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
         return "TrashEnemyDying";
       case State.ATTACK:
         return "TrashEnemyAttack";
+      case State.DOUBLE_ATTACK:
+        return "TrashEnemyDoubleAttack";
       case State.DIZZY:
         return "TrashEnemyDizzy";
       case State.STUNNED:
@@ -249,6 +301,11 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
     return "TrashEnemyMound";
   }
 
+  public void OnBossUnlocked()
+  {
+    this.isRumbling = true;
+  }
+
   private void ChangeState(State state)
   {
     if (state != this.state)
@@ -256,7 +313,7 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
       timeInState = 0f;
       this.state = state;
 
-      if (state == State.ATTACK)
+      if (state == State.ATTACK || state == State.DOUBLE_ATTACK)
       {
         didLandHit = false;
       }
@@ -275,6 +332,15 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
     }
   }
 
+  private void NotifyDropletsStopSiphoning()
+  {
+    foreach (SiphonDroplet droplet in droplets)
+    {
+      droplet.DisableSiphoning();
+    }
+    droplets.Clear();
+  }
+
   private IEnumerator HitFlash()
   {
     spriteRenderer.material = hitFlashMaterial;
@@ -285,12 +351,14 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
   private enum State
   {
     MOUND,
+    RUMBLING,
     EMERGING,
     IDLE,
     RETREATING,
     PAINED,
     DYING,
     ATTACK,
+    DOUBLE_ATTACK,
     DIZZY,
     STUNNED,
     RECOVERING
