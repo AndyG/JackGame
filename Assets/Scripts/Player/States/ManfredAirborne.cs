@@ -14,10 +14,10 @@ public class ManfredAirborne : ManfredStates.ManfredState0Param
       manfred.velocity.y = manfred.minJumpVelocity;
     }
 
+    float horizInput = manfred.playerInput.GetHorizInput();
     if (manfred.lockAirborneMovementTime <= 0f)
     {
       // move
-      float horizInput = manfred.playerInput.GetHorizInput();
       float targetVelocityX = horizInput * manfred.horizSpeed;
       manfred.velocity.x = Mathf.SmoothDamp(
         manfred.velocity.x,
@@ -57,7 +57,7 @@ public class ManfredAirborne : ManfredStates.ManfredState0Param
     }
 
     // check if hit ground
-    if (collisions.left || collisions.right)
+    if (collisions.left && horizInput < 0 || collisions.right && horizInput > 0)
     {
       manfred.velocity.x = 0f;
       manfred.velocity.y = 0f;
