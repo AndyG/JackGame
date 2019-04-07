@@ -9,14 +9,13 @@ public class ParallaxImage : MonoBehaviour
     private Transform target;
 
     [SerializeField]
-    private Vector3 offset;
-
-    [SerializeField]
     private float parallaxScale = 1f; 
 
     private Vector3 lastTargetPosition;
 
     private bool initialized = false;
+
+    private Vector3 offset;
 
     void Start() {
         initialized = false;
@@ -40,7 +39,8 @@ public class ParallaxImage : MonoBehaviour
         } else {
             Vector3 delta = lastTargetPosition - target.position;
             Vector3 movement = delta * parallaxScale;
-            this.transform.position = this.transform.position + (delta * parallaxScale);
+            offset -= movement;
+            this.transform.position = target.position + offset;
             lastTargetPosition = target.position;
         }
     }

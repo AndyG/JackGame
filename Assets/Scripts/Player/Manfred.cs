@@ -47,6 +47,7 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
 
   public Transform siphonSinkTransform;
   public Transform loverEffectSourceTransform;
+  public Transform jumpEffectTransform;
 
   public FSM<Manfred, ManfredStates.IManfredState> fsm;
 

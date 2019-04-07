@@ -7,6 +7,9 @@ public class ManfredAirborne : ManfredStates.ManfredState0Param
 
   private float airborneFloatingThreshold = 7;
 
+  [SerializeField]
+  private GameObject landEffect;
+
   public override void Tick()
   {
     if (manfred.velocity.y > manfred.minJumpVelocity && manfred.playerInput.GetDidReleaseJump())
@@ -52,6 +55,7 @@ public class ManfredAirborne : ManfredStates.ManfredState0Param
     if (collisions.below)
     {
       manfred.velocity.y = 0f;
+      SpawnLandEffect();
       manfred.fsm.ChangeState(manfred.stateGrounded, manfred.stateGrounded);
       return;
     }
@@ -65,6 +69,10 @@ public class ManfredAirborne : ManfredStates.ManfredState0Param
       manfred.fsm.ChangeState(manfred.stateWallCling, manfred.stateWallCling, isWallOnLeft);
       return;
     }
+  }
+
+  private void SpawnLandEffect() {
+    GameObject effect = GameObject.Instantiate(landEffect, manfred.jumpEffectTransform.position, Quaternion.identity);
   }
 
   public override string GetAnimation()

@@ -46,6 +46,8 @@ MonoBehaviour:
   leapVelocity: {x: 40, y: 15}
   jumpVelocity: {x: 15, y: 20}
   hopVelocity: {x: 5, y: 5}
-  climbVelocity: {x: 5, y: 30}
+  climbVelocity: {x: 3, y: 30}
   holdAwayToHopTime: 0.2
   lockMovementAfterJumpTime: 0.2
+  wallJumpEffect: {fileID: 2990381620326328034, guid: ccc70c1132d459a4ea81b74b64776e8f,
+    type: 3}

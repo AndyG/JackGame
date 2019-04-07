@@ -44,3 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpPower: 20
+  enableCrouch: 0
+  jumpEffect: {fileID: 7316835655335920760, guid: cf0f72013dc78d84bac94ad8ad1f4a71,
+    type: 3}
