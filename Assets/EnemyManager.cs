@@ -32,12 +32,7 @@ public class EnemyManager : MonoBehaviour
 
   public void DecrementTrashEnemies()
   {
-    audioSource.PlayOneShot(enemyDeathClip);
-    this.countTrashEnemies--;
-    if (countTrashEnemies == 0)
-    {
-      DoBossUnlock();
-    }
+    StartCoroutine(DelayedDecrement());
   }
 
   public bool IsBossUnlocked()
@@ -49,6 +44,16 @@ public class EnemyManager : MonoBehaviour
   {
     isBossUnlocked = true;
     listener.OnBossUnlocked();
+  }
+
+  private IEnumerator DelayedDecrement() {
+    yield return new WaitForSeconds(1.5f);
+    audioSource.PlayOneShot(enemyDeathClip);
+    this.countTrashEnemies--;
+    if (countTrashEnemies == 0)
+    {
+      DoBossUnlock();
+    }
   }
 
   public interface Listener

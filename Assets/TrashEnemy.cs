@@ -171,10 +171,13 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
       }
     }
 
-    if (health <= 0)
+    if (health <= 0 && state != State.DYING)
     {
       NotifyDropletsStopSiphoning();
       ChangeState(State.DYING);
+      if (!isBoss) {
+          enemyManager.DecrementTrashEnemies();
+      }
       if (listeners != null) {
         foreach (Listener listener in listeners) {
             listener.OnDeath();
@@ -234,7 +237,6 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
   {
     if (!isBoss)
     {
-      enemyManager.DecrementTrashEnemies();
     }
   }
 

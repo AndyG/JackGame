@@ -557,6 +557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 746ebc2d7c45e48fda23b9112ed61082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathSoundEffect: {fileID: 8300000, guid: adb6a10fddf373445830871d07261f1b, type: 3}
   animator: {fileID: 5785739327105106406}
   playerInput: {fileID: 11400000, guid: 8c5a438a6a6204d558dd442e34dea6e8, type: 2}
   controller: {fileID: 949882973}

@@ -106202,8 +106202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb62acccaf2af749a54cce2e4de091e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cards:
-  - {fileID: 11400000, guid: 7738c54ecf28e774d8176fe3737c9f9e, type: 2}
+  cards: []
   percentTowardNextCard: 0
   cardTypeMapper: {fileID: 11400000, guid: 8cf05ef3d298245d091436abb48a5f90, type: 2}
 --- !u!4 &1163300493
@@ -117664,7 +117663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBossUnlocked: 0
-  enemyDeathClip: {fileID: 8300000, guid: 378e2264c848fc14ab14915714f1abaa, type: 3}
+  enemyDeathClip: {fileID: 8300000, guid: 0521d33832ff82042b3993a0c2a202ab, type: 3}
 --- !u!4 &1781115314
 Transform:
   m_ObjectHideFlags: 0
@@ -117689,7 +117688,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 378e2264c848fc14ab14915714f1abaa, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0521d33832ff82042b3993a0c2a202ab, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.75
   m_Pitch: 1

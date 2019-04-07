@@ -20,6 +20,11 @@ public class Torch : MonoBehaviour, TrashEnemy.Listener
     }
 
     public void OnDeath() {
+        StartCoroutine(DelayedLight());
+    }
+    
+    private IEnumerator DelayedLight() {
+        yield return new WaitForSeconds(1.5f);
         Light();
     }
 }
