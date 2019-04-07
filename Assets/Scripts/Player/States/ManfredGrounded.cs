@@ -8,6 +8,9 @@ public class ManfredGrounded : ManfredStates.ManfredState0Param
   [SerializeField]
   private float jumpPower;
 
+  [SerializeField]
+  private bool enableCrouch;
+
   private float attackCooldown = 0.05f;
   private float timeInState = 0.25f;
 
@@ -36,7 +39,7 @@ public class ManfredGrounded : ManfredStates.ManfredState0Param
       return;
     }
 
-    if (manfred.playerInput.GetHorizInput() == 0f && manfred.playerInput.GetVerticalInput() < 0)
+    if (enableCrouch && manfred.playerInput.GetHorizInput() == 0f && manfred.playerInput.GetVerticalInput() < 0)
     {
       manfred.velocity.x = 0;
       manfred.fsm.ChangeState(manfred.stateCrouch, manfred.stateCrouch);
