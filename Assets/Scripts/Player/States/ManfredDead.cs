@@ -23,18 +23,21 @@ public class ManfredDead : ManfredStates.ManfredState0Param
 
   private Cinemachine.CinemachineImpulseSource impulseSource;
 
-  void Start() {
+  void Start()
+  {
     this.impulseSource = GetComponent<Cinemachine.CinemachineImpulseSource>();
   }
 
-  public override void Enter() {
+  public override void Enter()
+  {
     timeInState = 0f;
     bats.Clear();
     SpawnBats();
     impulseSource.GenerateImpulse();
   }
 
-  public override void Tick() {
+  public override void Tick()
+  {
     timeInState += Time.deltaTime;
   }
 
@@ -43,12 +46,20 @@ public class ManfredDead : ManfredStates.ManfredState0Param
     return "ManfredInvisible";
   }
 
-  public override HurtInfo OnHit(HitInfo hitInfo) {
+  public override HurtInfo OnHit(HitInfo hitInfo)
+  {
     return new HurtInfo(false);
   }
 
-  private void SpawnBats() {
-    for (int i = 0; i < batCount; i++) {
+  public override bool IsDead()
+  {
+    return true;
+  }
+
+  private void SpawnBats()
+  {
+    for (int i = 0; i < batCount; i++)
+    {
       DeathBat bat = GameObject.Instantiate(batPrototype, manfred.siphonSinkTransform.position, Quaternion.identity).GetComponent<DeathBat>();
       bats.Add(bat);
       bat.SetVelocity(Random.insideUnitCircle * batInitialSpeed);
@@ -58,7 +69,8 @@ public class ManfredDead : ManfredStates.ManfredState0Param
 
       float randomFactor = Random.Range(0, 1f);
       bool isBigBat = randomFactor > 0.5f;
-      if (isBigBat) {
+      if (isBigBat)
+      {
         bat.transform.localScale = bat.transform.localScale * 1.2f;
       }
     }
