@@ -11,6 +11,7 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   public AnimationManager animationManager;
   public PlayerInput playerInput;
   public PlayerController controller;
+  public GroundTypeDetector spikeDetector;
 
   [System.NonSerialized]
   public CardManager cardManager;
@@ -87,6 +88,12 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
     playerInput.Update();
     fsm.TickCurrentState();
     animationManager.Update();
+
+    if (!fsm.currentState.IsDead() && spikeDetector.IsTouching())
+    {
+      DieAndRestartScene();
+    }
+
     transform.localScale = new Vector3(IsFacingDefaultDirection() ? 1f : -1f, 1f, 1f);
   }
 
@@ -103,8 +110,7 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
     HurtInfo hurtInfo = fsm.currentState.OnHit(hitInfo);
     if (hurtInfo.hitConnected)
     {
-      fsm.ChangeState(stateDead, stateDead);
-      StartCoroutine(DelayedRestartScene());
+      DieAndRestartScene();
     }
 
     return hurtInfo;
@@ -130,6 +136,12 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   public void FaceMovementDirection()
   {
     isFacingRight = velocity.x >= 0f;
+  }
+
+  private void DieAndRestartScene()
+  {
+    fsm.ChangeState(stateDead, stateDead);
+    StartCoroutine(DelayedRestartScene());
   }
 
   private IEnumerator DelayedRestartScene()
