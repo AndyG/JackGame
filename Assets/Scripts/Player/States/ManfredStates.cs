@@ -8,6 +8,7 @@ public class ManfredStates
   public interface IManfredState : FSMState<Manfred>
   {
     void OnMessage(string message);
+    bool IsDead();
     HurtInfo OnHit(HitInfo hitInfo);
     bool OverridesFacingDirection();
     bool IsFacingDefaultDirection();
@@ -30,6 +31,7 @@ public class ManfredStates
     public virtual void OnMessage(string message) { }
 
     // ManfredState methods
+    public virtual bool IsDead() => IsDeadDefaultImpl();
     public virtual HurtInfo OnHit(HitInfo hitInfo) => OnHitDefaultImpl(hitInfo);
     public virtual bool OverridesFacingDirection() => OverridesFacingDirectionDefaultImpl();
     public virtual bool IsFacingDefaultDirection() => IsFacingDefaultDirectionDefaultImpl();
@@ -52,6 +54,7 @@ public class ManfredStates
     public virtual void OnMessage(string message) { }
 
     // ManfredState methods
+    public virtual bool IsDead() => IsDeadDefaultImpl();
     public virtual HurtInfo OnHit(HitInfo hitInfo) => OnHitDefaultImpl(hitInfo);
     public virtual bool OverridesFacingDirection() => OverridesFacingDirectionDefaultImpl();
     public virtual bool IsFacingDefaultDirection() => IsFacingDefaultDirectionDefaultImpl();
@@ -74,6 +77,7 @@ public class ManfredStates
     public virtual void OnMessage(string message) { }
 
     // ManfredState methods
+    public virtual bool IsDead() => IsDeadDefaultImpl();
     public virtual HurtInfo OnHit(HitInfo hitInfo) => OnHitDefaultImpl(hitInfo);
     public virtual bool OverridesFacingDirection() => OverridesFacingDirectionDefaultImpl();
     public virtual bool IsFacingDefaultDirection() => IsFacingDefaultDirectionDefaultImpl();
@@ -96,6 +100,7 @@ public class ManfredStates
     public virtual void OnMessage(string message) { }
 
     // ManfredState methods
+    public virtual bool IsDead() => IsDeadDefaultImpl();
     public virtual HurtInfo OnHit(HitInfo hitInfo) => OnHitDefaultImpl(hitInfo);
     public virtual bool OverridesFacingDirection() => OverridesFacingDirectionDefaultImpl();
     public virtual bool IsFacingDefaultDirection() => IsFacingDefaultDirectionDefaultImpl();
@@ -107,6 +112,7 @@ public class ManfredStates
     return new HurtInfo(true);
   }
 
+  private static bool IsDeadDefaultImpl() => false;
   private static bool OverridesFacingDirectionDefaultImpl() => false;
   private static bool IsFacingDefaultDirectionDefaultImpl() => true;
   private static string GetAnimationDefaultImpl() => "ManfredIdle";
