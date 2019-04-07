@@ -11,7 +11,7 @@ public class CrumblingTileGroup : MonoBehaviour
   [SerializeField]
   private float degradationInterval;
   [SerializeField]
-  private float health;
+  private int health;
 
   private float currentDegradationTime;
 
@@ -22,12 +22,12 @@ public class CrumblingTileGroup : MonoBehaviour
     this.rb = GetComponent<Rigidbody2D>();
     this.characterDetector = GetComponent<CharacterDetector>();
     crumblingTiles = GetComponentsInChildren<CrumblingTile>();
+    NotifyHealth();
   }
 
   // Update is called once per frame
   void Update()
   {
-
     bool isCharacterDetected = false;
     for (int i = 0; i < crumblingTiles.Length; i++)
     {
@@ -58,9 +58,20 @@ public class CrumblingTileGroup : MonoBehaviour
   private void Degrade()
   {
     health--;
+    NotifyHealth();
+
     if (health <= 0f)
     {
       GameObject.Destroy(this.transform.gameObject);
+    }
+  }
+
+  private void NotifyHealth()
+  {
+    for (int i = 0; i < crumblingTiles.Length; i++)
+    {
+      CrumblingTile tile = crumblingTiles[i];
+      tile.NotifyHealth(health);
     }
   }
 }
