@@ -4343,24 +4343,6 @@ Tilemap:
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
       m_ColliderType: 1
-  - first: {x: 10, y: 40, z: 0}
-    second:
-      m_TileIndex: 23
-      m_TileSpriteIndex: 23
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_ObjectToInstantiate: {fileID: 0}
-      m_TileFlags: 1
-      m_ColliderType: 1
-  - first: {x: 11, y: 40, z: 0}
-    second:
-      m_TileIndex: 23
-      m_TileSpriteIndex: 23
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_ObjectToInstantiate: {fileID: 0}
-      m_TileFlags: 1
-      m_ColliderType: 1
   - first: {x: 75, y: 40, z: 0}
     second:
       m_TileIndex: 23
@@ -5750,7 +5732,7 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 10e911ab685914d76b316f7c2df514bb, type: 2}
-  - m_RefCount: 517
+  - m_RefCount: 515
     m_Data: {fileID: 11400000, guid: f7255bfea80734eb4ae21740e9270292, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
@@ -5799,10 +5781,10 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 2
     m_Data: {fileID: 21300000, guid: 18483b556b36c46a48becdf74bf17d2d, type: 3}
-  - m_RefCount: 517
+  - m_RefCount: 515
     m_Data: {fileID: 21300016, guid: 18483b556b36c46a48becdf74bf17d2d, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 519
+  - m_RefCount: 517
     m_Data:
       e00: 1
       e01: 0
@@ -5821,7 +5803,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 519
+  - m_RefCount: 517
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5976,9 +5958,9 @@ CompositeCollider2D:
       - X: 100000000
         Y: 480000000
       - X: 100000000
-        Y: 400000000
+        Y: 410000000
       - X: 120000000
-        Y: 400000000
+        Y: 410000000
       - X: 120000000
         Y: 480000000
       - X: 240000000
@@ -6252,8 +6234,8 @@ CompositeCollider2D:
       - {x: 8, y: 47}
       - {x: 8, y: 48}
       - {x: 10, y: 48}
-      - {x: 10, y: 40}
-      - {x: 12, y: 40}
+      - {x: 10, y: 41}
+      - {x: 12, y: 41}
       - {x: 12, y: 48}
       - {x: 24, y: 48}
       - {x: 24, y: 42}
@@ -8181,7 +8163,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &573638345
 Transform:
   m_ObjectHideFlags: 0
