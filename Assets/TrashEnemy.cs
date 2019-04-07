@@ -272,7 +272,7 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
     switch (state)
     {
       case State.MOUND:
-        if (isRumbling)
+        if (isBoss)
         {
           return "TrashEnemyRumbling";
         }
