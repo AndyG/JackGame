@@ -37,32 +37,22 @@ public class CardManager : MonoBehaviour
 
   public void AddPercentToCard(int percent)
   {
-    if (this.cards.Count == 2)
-    {
-      return;
-    }
-
     this.percentTowardNextCard += percent;
     if (this.percentTowardNextCard >= 100)
     {
       Card card = GenerateNextCard();
       this.cards.Add(card);
-      if (this.cards.Count < 2)
-      {
+      if (this.cards.Count < 2) {
         this.percentTowardNextCard = this.percentTowardNextCard - 100; // assumes you never got 200+ percent at once
-      }
-      else
-      {
+      } else {
         this.percentTowardNextCard = 0;
       }
     }
     NotifyUIManagerCards();
   }
 
-  public CardType? ConsumeCard()
-  {
-    if (this.cards.Count > 0)
-    {
+  public CardType? ConsumeCard() {
+    if (this.cards.Count > 0) {
       Card card = this.cards[0];
       this.cards.RemoveAt(0);
       NotifyUIManagerCards();

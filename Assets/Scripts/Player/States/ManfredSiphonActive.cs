@@ -9,7 +9,7 @@ public class ManfredSiphonActive : ManfredStates.ManfredState0Param
   [SerializeField]
   private float siphonRadius = 3f;
   [SerializeField]
-  private LayerMask siphonLayerMask;
+  private LayerMask siphonLayerMask; 
   [SerializeField]
   private float attractForce = 0.1f;
   [SerializeField]
@@ -17,9 +17,8 @@ public class ManfredSiphonActive : ManfredStates.ManfredState0Param
 
   private Cinemachine.CinemachineImpulseSource impulseSource;
 
-  void Start()
-  {
-    this.impulseSource = GetComponent<Cinemachine.CinemachineImpulseSource>();
+  void Start() {
+      this.impulseSource = GetComponent<Cinemachine.CinemachineImpulseSource>();
   }
 
   public override void Tick()
@@ -31,22 +30,18 @@ public class ManfredSiphonActive : ManfredStates.ManfredState0Param
     }
 
     Collider2D[] colliders = Physics2D.OverlapCircleAll(manfred.siphonSinkTransform.position, siphonRadius, siphonLayerMask);
-    for (int i = 0; i < colliders.Length; i++)
-    {
+    for (int i = 0; i < colliders.Length; i++) {
       Collider2D collider = colliders[i];
       SiphonSource source = collider.GetComponentInParent<SiphonSource>();
-      if (source != null)
-      {
-        source.OnSiphoned(manfred.siphonSinkTransform.position, attractForce);
+      if (source != null) {
+          source.OnSiphoned(manfred.siphonSinkTransform.position, attractForce);
 
-        SiphonDroplet droplet = source as SiphonDroplet;
-        if (droplet != null && ShouldCollectDroplet(droplet))
-        {
-          CollectDroplet(droplet);
-          Debug.Log("generating impulse");
-          impulseSource.GenerateImpulse();
+          SiphonDroplet droplet = source as SiphonDroplet;
+          if (droplet != null && ShouldCollectDroplet(droplet)) {
+            CollectDroplet(droplet);
+            impulseSource.GenerateImpulse();
+          }
         }
-      }
     }
   }
 
@@ -55,14 +50,12 @@ public class ManfredSiphonActive : ManfredStates.ManfredState0Param
     return "VampSiphonActive";
   }
 
-  private bool ShouldCollectDroplet(SiphonDroplet droplet)
-  {
+  private bool ShouldCollectDroplet(SiphonDroplet droplet) {
     float distance = (droplet.transform.position - manfred.siphonSinkTransform.position).magnitude;
     return distance < collectDistanceRadius;
   }
 
-  private void CollectDroplet(SiphonDroplet droplet)
-  {
+  private void CollectDroplet(SiphonDroplet droplet) {
     droplet.OnCollected();
     manfred.cardManager.AddPercentToCard(droplet.GetPercentContained());
   }
@@ -71,12 +64,10 @@ public class ManfredSiphonActive : ManfredStates.ManfredState0Param
   {
     // This is a hack and should be done smarter by storing the currently attracted droplets and notifying them without finding them again.
     Collider2D[] colliders = Physics2D.OverlapCircleAll(manfred.siphonSinkTransform.position, siphonRadius * 2, siphonLayerMask);
-    for (int i = 0; i < colliders.Length; i++)
-    {
+    for (int i = 0; i < colliders.Length; i++) {
       Collider2D collider = colliders[i];
       SiphonSource source = collider.GetComponentInParent<SiphonSource>();
-      if (source != null)
-      {
+      if (source != null) {
         source.OnSiphonStopped();
       }
     }
