@@ -1099,6 +1099,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6315818512666006492, guid: ef1e270c8d2a5f442ac2e913b8c0f639,
         type: 3}
+    - target: {fileID: 9054593641263332046, guid: 788d62347a3108142ab22fdaec2f36ba,
+        type: 3}
+      propertyPath: deathCardSoundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: 378e2264c848fc14ab14915714f1abaa, type: 3}
+    - target: {fileID: 9054593641263332046, guid: 788d62347a3108142ab22fdaec2f36ba,
+        type: 3}
+      propertyPath: loveCardSoundEffect
+      value: 
+      objectReference: {fileID: 8300000, guid: 581a4c886492f954f959ec8aaa368ebb, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 788d62347a3108142ab22fdaec2f36ba, type: 3}
 --- !u!4 &7397045592493867373 stripped
