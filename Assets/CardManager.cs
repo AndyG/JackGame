@@ -35,8 +35,27 @@ public class CardManager : MonoBehaviour
     NotifyUIManagerCards();
   }
 
-  public void AddPercentToCard(int percent)
+  public void AddPercentToCard(int percent, bool forceJudgment)
   {
+    if (forceJudgment || (cards.Count > 0 && cards[0].cardType == CardType.JUDGMENT))
+    {
+      if (cards.Count == 0)
+      {
+        cards.Add(GenerateJudgmentCard());
+      }
+      else
+      {
+        cards[0] = GenerateJudgmentCard();
+      }
+      if (cards.Count == 2)
+      {
+        cards.RemoveAt(1);
+      }
+      percentTowardNextCard = 0;
+      NotifyUIManagerCards();
+      return;
+    }
+
     if (this.cards.Count == 2)
     {
       return;
@@ -75,10 +94,15 @@ public class CardManager : MonoBehaviour
   private Card GenerateNextCard()
   {
     CardType[] cardTypes = (CardType[])Enum.GetValues(typeof(CardType));
-    int randomCardIndex = random.Next(cardTypes.Length);
+    int randomCardIndex = random.Next(cardTypes.Length - 1); // -1 to not get judgment
     CardType cardType = cardTypes[randomCardIndex];
     Card card = cardTypeMapper.GetCard(cardType);
     return card;
+  }
+
+  private Card GenerateJudgmentCard()
+  {
+    return cardTypeMapper.GetCard(CardType.JUDGMENT);
   }
 
   private void NotifyUIManagerCards()

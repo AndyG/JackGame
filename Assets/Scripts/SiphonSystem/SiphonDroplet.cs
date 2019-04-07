@@ -35,6 +35,9 @@ public class SiphonDroplet : MonoBehaviour, SiphonSource
 
   private float timeSinceSiphonDisabled = 0.3f;
 
+  [System.NonSerialized]
+  public bool givesJudgment = false;
+
   public void Awake()
   {
     this.rb = GetComponent<Rigidbody2D>();

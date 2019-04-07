@@ -64,7 +64,7 @@ public class ManfredSiphonActive : ManfredStates.ManfredState0Param
   private void CollectDroplet(SiphonDroplet droplet)
   {
     droplet.OnCollected();
-    manfred.cardManager.AddPercentToCard(droplet.GetPercentContained());
+    manfred.cardManager.AddPercentToCard(droplet.GetPercentContained(), droplet.givesJudgment);
   }
 
   private void TransitionToSiphonRecovery()

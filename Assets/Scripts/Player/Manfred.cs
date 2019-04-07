@@ -25,6 +25,8 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   [System.NonSerialized]
   public EffectsCanvas effectsCanvas;
 
+  public EndCanvas endCanvas;
+
   public float gravity;
   public Vector2 velocity = new Vector2(0f, 0f);
   public float horizSpeed = 0.5f;
@@ -138,6 +140,12 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
     isFacingRight = velocity.x >= 0f;
   }
 
+  public void EndGame()
+  {
+    fsm.ChangeState(stateDead, stateDead);
+    StartCoroutine(DelayedShowEndScreen());
+  }
+
   private void DieAndRestartScene()
   {
     fsm.ChangeState(stateDead, stateDead);
@@ -148,5 +156,11 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   {
     yield return new WaitForSeconds(3f);
     sceneTransitioner.RestartScene();
+  }
+
+  private IEnumerator DelayedShowEndScreen()
+  {
+    yield return new WaitForSeconds(3f);
+    endCanvas.FadeIn();
   }
 }

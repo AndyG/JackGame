@@ -143,6 +143,11 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
         droplet.SetInitialVelocity(Random.insideUnitCircle * 5);
         timeSinceSpawnedDroplet = 0f;
 
+        if (hasBossRetreated)
+        {
+          droplet.givesJudgment = true;
+        }
+
         if (health <= bossRetreatThreshold / 2 && isBoss && !hasBossRetreated)
         {
           ChangeState(State.RETREATING);

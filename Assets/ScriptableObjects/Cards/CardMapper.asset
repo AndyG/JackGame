@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathCard: {fileID: 11400000, guid: d7df9baf3f82695418e83468eeb77fd5, type: 2}
   loverCard: {fileID: 11400000, guid: 7738c54ecf28e774d8176fe3737c9f9e, type: 2}
+  judgmentCard: {fileID: 11400000, guid: 2ebe4274304ef4a4dbd667da63386242, type: 2}

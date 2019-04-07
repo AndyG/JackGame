@@ -7,6 +7,7 @@ public class CardTypeMapper : ScriptableObject
 {
   public Card deathCard;
   public Card loverCard;
+  public Card judgmentCard;
 
   public Card GetCard(CardType cardType)
   {
@@ -14,6 +15,7 @@ public class CardTypeMapper : ScriptableObject
     {
       case CardType.DEATH: return deathCard;
       case CardType.LOVER: return loverCard;
+      case CardType.JUDGMENT: return judgmentCard;
     }
 
     return null;
