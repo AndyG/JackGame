@@ -5,6 +5,9 @@ using UnityEngine;
 public class ManfredAttack1 : ManfredStates.ManfredState0Param
 {
 
+  [SerializeField]
+  private AudioClip soundEffect;
+
   private bool allowNextAttack = false;
   private bool lockout = false;
   private bool didLandAttack = false;
@@ -43,6 +46,7 @@ public class ManfredAttack1 : ManfredStates.ManfredState0Param
 
       if (didLandAttack) {
         TimeManagerSingleton.Instance.DoDramaticPause(0.2f);
+        manfred.effectsAudioSource.PlayOneShot(soundEffect);
       }
     }
   }

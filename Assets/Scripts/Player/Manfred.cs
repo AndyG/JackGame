@@ -14,6 +14,9 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   public GroundTypeDetector spikeDetector;
 
   [System.NonSerialized]
+  public AudioSource effectsAudioSource;
+
+  [System.NonSerialized]
   public CardManager cardManager;
 
   [System.NonSerialized]
@@ -73,6 +76,7 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
     animator = GetComponent<Animator>();
     controller = GetComponent<PlayerController>();
     hitboxManager = GetComponent<HitboxManager>();
+    effectsAudioSource = GetComponent<AudioSource>();
     sceneTransitioner = (SceneTransitioner)FindObjectOfType(typeof(SceneTransitioner));
     effectsCanvas = (EffectsCanvas)FindObjectOfType(typeof(EffectsCanvas));
 

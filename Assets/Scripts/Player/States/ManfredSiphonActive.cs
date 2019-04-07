@@ -15,11 +15,22 @@ public class ManfredSiphonActive : ManfredStates.ManfredState0Param
   [SerializeField]
   private float collectDistanceRadius = 0.1f;
 
+  private AudioSource audioSource;
+
   private Cinemachine.CinemachineImpulseSource impulseSource;
 
   void Start()
   {
     this.impulseSource = GetComponent<Cinemachine.CinemachineImpulseSource>();
+    this.audioSource = GetComponent<AudioSource>();
+  }
+
+  public override void Enter() {
+    audioSource.Play();
+  }
+
+  public override void Exit() {
+    audioSource.Stop();
   }
 
   public override void Tick()
