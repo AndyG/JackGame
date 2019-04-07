@@ -38,9 +38,7 @@ public class ParallaxImage : MonoBehaviour
             initialized = true;
         } else {
             Vector3 delta = lastTargetPosition - target.position;
-            Vector3 movement = delta * parallaxScale;
-            offset -= movement;
-            this.transform.position = target.position + offset;
+            this.transform.position = this.transform.position + delta * parallaxScale;
             lastTargetPosition = target.position;
         }
     }
