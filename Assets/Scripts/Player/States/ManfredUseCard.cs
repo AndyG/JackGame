@@ -10,6 +10,9 @@ public class ManfredUseCard : ManfredStates.ManfredState0Param
 
   private CardType? cardType;
 
+  [SerializeField]
+  private GameObject loverEffectPrototype;
+
   void Start()
   {
     this.deathImpulseSource = GetComponent<Cinemachine.CinemachineImpulseSource>();
@@ -88,6 +91,6 @@ public class ManfredUseCard : ManfredStates.ManfredState0Param
 
   private void UseLover()
   {
-
+    GameObject.Instantiate(loverEffectPrototype, manfred.loverEffectSourceTransform.position, Quaternion.identity);
   }
 }

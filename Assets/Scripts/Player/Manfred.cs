@@ -40,6 +40,7 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   public float velocityXSmoothing = 0f;
 
   public Transform siphonSinkTransform;
+  public Transform loverEffectSourceTransform;
 
   public FSM<Manfred, ManfredStates.IManfredState> fsm;
 

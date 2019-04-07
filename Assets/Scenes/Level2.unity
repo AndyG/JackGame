@@ -718,7 +718,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &84344553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8221,7 +8221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &575105353
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9632,6 +9632,12 @@ MonoBehaviour:
   m_ChannelMask: 1
   m_Gain: 1
   m_Use2DDistance: 1
+--- !u!4 &928012083 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 928012083, guid: 8a6f138910f32416aa3b3ed9b87ee251,
+    type: 3}
+  m_PrefabInstance: {fileID: 5785739327783145905}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &949882969 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5785739327105106408, guid: 8a6f138910f32416aa3b3ed9b87ee251,
@@ -13199,7 +13205,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2067677343
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13683,5 +13689,23 @@ PrefabInstance:
       propertyPath: endCanvas
       value: 
       objectReference: {fileID: 2067677344}
+    - target: {fileID: 949882970, guid: 8a6f138910f32416aa3b3ed9b87ee251, type: 3}
+      propertyPath: loverEffectSourceTransform
+      value: 
+      objectReference: {fileID: 928012083}
+    - target: {fileID: 8304607881745691865, guid: 8a6f138910f32416aa3b3ed9b87ee251,
+        type: 3}
+      propertyPath: loverEffectPrototype
+      value: 
+      objectReference: {fileID: 6315818512666006492, guid: ef1e270c8d2a5f442ac2e913b8c0f639,
+        type: 3}
+    - target: {fileID: 928012083, guid: 8a6f138910f32416aa3b3ed9b87ee251, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 928012083, guid: 8a6f138910f32416aa3b3ed9b87ee251, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a6f138910f32416aa3b3ed9b87ee251, type: 3}
