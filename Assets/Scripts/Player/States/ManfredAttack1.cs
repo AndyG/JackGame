@@ -8,9 +8,13 @@ public class ManfredAttack1 : ManfredStates.ManfredState0Param
   [SerializeField]
   private AudioClip soundEffect;
 
+  [SerializeField]
+  private bool lockoutMashers;
+
   private bool allowNextAttack = false;
   private bool lockout = false;
   private bool didLandAttack = false;
+
 
   public override void Enter()
   {
@@ -25,7 +29,9 @@ public class ManfredAttack1 : ManfredStates.ManfredState0Param
     {
       if (!allowNextAttack)
       {
-        lockout = true;
+        if (lockoutMashers) {
+          lockout = true;
+        }
       }
       else if (!lockout)
       {

@@ -2,17 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Torch : MonoBehaviour
+public class Torch : MonoBehaviour, TrashEnemy.Listener
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+
+    private Animator flameAnimator;
+
+    [SerializeField]
+    private TrashEnemy trashEnemy;
+
+    void Start() {
+        this.flameAnimator = GetComponentInChildren<Animator>();
+        trashEnemy.AddListener(this);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void Light() {
+        flameAnimator.SetTrigger("Light");
+    }
+
+    public void OnDeath() {
+        Light();
     }
 }

@@ -57,6 +57,8 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
 
   private bool didLandHit = false;
 
+  private HashSet<Listener> listeners;
+
   // Start is called before the first frame update
   void Start()
   {
@@ -127,6 +129,18 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
     }
   }
 
+  public void AddListener(Listener listener) {
+      if (listeners == null) {
+          listeners = new HashSet<Listener>();
+      }
+
+      listeners.Add(listener);
+  }
+
+  public void RemoveListener(Listener listener) {
+      listeners.Remove(listener);
+  }
+
   public void OnSiphoned(Vector3 siphonPosition, float siphonForce)
   {
     if (state == State.STUNNED)
@@ -161,6 +175,11 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
     {
       NotifyDropletsStopSiphoning();
       ChangeState(State.DYING);
+      if (listeners != null) {
+        foreach (Listener listener in listeners) {
+            listener.OnDeath();
+        }
+      }
     }
   }
 
@@ -366,5 +385,9 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
     DIZZY,
     STUNNED,
     RECOVERING
+  }
+
+  public interface Listener {
+      void OnDeath();
   }
 }

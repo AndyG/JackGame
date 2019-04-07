@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class EnemyManager : MonoBehaviour
 {
   public bool isBossUnlocked = false;
@@ -9,6 +10,15 @@ public class EnemyManager : MonoBehaviour
   int countTrashEnemies;
 
   private Listener listener;
+
+  [SerializeField]
+  private AudioClip enemyDeathClip;
+
+  private AudioSource audioSource;
+
+  void Start() {
+    this.audioSource = GetComponent<AudioSource>();
+  }
 
   public void SetListener(Listener listener)
   {
@@ -22,6 +32,7 @@ public class EnemyManager : MonoBehaviour
 
   public void DecrementTrashEnemies()
   {
+    audioSource.PlayOneShot(enemyDeathClip);
     this.countTrashEnemies--;
     if (countTrashEnemies == 0)
     {
