@@ -217,7 +217,6 @@ public class TrashEnemy : MonoBehaviour, AnimationManager.AnimationProvider, Cha
     {
       enemyManager.DecrementTrashEnemies();
     }
-    GameObject.Destroy(this.transform.gameObject);
   }
 
   public void OnFinishRecovering()
