@@ -114529,11 +114529,6 @@ PrefabInstance:
       propertyPath: Loop
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8481135130613721764, guid: 1b7efb4ade00c4186872e8ba0452dd2e,
-        type: 3}
-      propertyPath: m_Volume
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8481135130613721765, guid: 1b7efb4ade00c4186872e8ba0452dd2e,
         type: 3}
       propertyPath: m_TagString
