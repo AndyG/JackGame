@@ -7,6 +7,9 @@ using UnityEngine;
 public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtable
 {
 
+  [SerializeField]
+  private AudioClip deathSoundEffect;
+
   public Animator animator;
   public AnimationManager animationManager;
   public PlayerInput playerInput;
@@ -44,6 +47,7 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
 
   public Transform siphonSinkTransform;
   public Transform loverEffectSourceTransform;
+  public Transform jumpEffectTransform;
 
   public FSM<Manfred, ManfredStates.IManfredState> fsm;
 
@@ -147,13 +151,20 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
 
   public void EndGame()
   {
-    fsm.ChangeState(stateDead, stateDead);
+    Die();
     StartCoroutine(DelayedShowEndScreen());
+  }
+
+  private void Die() {
+    if (!fsm.currentState.IsDead()) {
+      effectsAudioSource.PlayOneShot(deathSoundEffect);
+    }
+    fsm.ChangeState(stateDead, stateDead);
   }
 
   private void DieAndRestartScene()
   {
-    fsm.ChangeState(stateDead, stateDead);
+    Die();
     StartCoroutine(DelayedRestartScene());
   }
 

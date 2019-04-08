@@ -11,6 +11,9 @@ public class ManfredGrounded : ManfredStates.ManfredState0Param
   [SerializeField]
   private bool enableCrouch;
 
+  [SerializeField]
+  GameObject jumpEffect;
+
   private float attackCooldown = 0.05f;
   private float timeInState = 0.25f;
 
@@ -34,6 +37,7 @@ public class ManfredGrounded : ManfredStates.ManfredState0Param
 
     if (manfred.playerInput.GetDidPressJumpBuffered())
     {
+      SpawnJumpEffect();
       manfred.velocity.y = jumpPower;
       manfred.fsm.ChangeState(manfred.stateAirborne, manfred.stateAirborne);
       return;
@@ -90,5 +94,9 @@ public class ManfredGrounded : ManfredStates.ManfredState0Param
   public override string GetAnimation()
   {
     return didRunThisFrame ? "VampRun" : "VampIdle";
+  }
+
+  private void SpawnJumpEffect() {
+    GameObject effect = GameObject.Instantiate(jumpEffect, manfred.jumpEffectTransform.position, Quaternion.identity);
   }
 }

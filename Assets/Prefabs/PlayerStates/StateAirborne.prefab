@@ -43,3 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e39656cc5aee34c498a34350a0e4889a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  landEffect: {fileID: 4384288146668355722, guid: f24002173d4fe21439a763aa96b55f72,
+    type: 3}

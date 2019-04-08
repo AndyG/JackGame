@@ -25,6 +25,9 @@ public class ManfredWallCling : ManfredStates.ManfredState1Param<bool>
   [SerializeField]
   private float lockMovementAfterJumpTime;
 
+  [SerializeField]
+  private GameObject wallJumpEffect;
+
   private float currentHoldAwayTime;
 
   public override void Enter(bool isWallOnLeft)
@@ -87,6 +90,14 @@ public class ManfredWallCling : ManfredStates.ManfredState1Param<bool>
     manfred.velocity = velocity;
     manfred.lockAirborneMovementTime = lockMovementAfterJumpTime;
     manfred.fsm.ChangeState(manfred.stateAirborne, manfred.stateAirborne);
+    SpawnEffect();
+  }
+
+  private void SpawnEffect() {
+    GameObject effect = GameObject.Instantiate(wallJumpEffect, manfred.jumpEffectTransform.position, Quaternion.identity);
+    if (!isWallOnLeft) {
+      effect.transform.localScale = new Vector3(-1, 1, 1);
+    }
   }
 
   private void DoJump()

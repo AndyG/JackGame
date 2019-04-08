@@ -13,6 +13,12 @@ public class ManfredUseCard : ManfredStates.ManfredState0Param
   [SerializeField]
   private GameObject loverEffectPrototype;
 
+  [SerializeField]
+  private AudioClip deathCardSoundEffect;
+
+  [SerializeField]
+  private AudioClip loveCardSoundEffect;
+
   void Start()
   {
     this.deathImpulseSource = GetComponent<Cinemachine.CinemachineImpulseSource>();
@@ -81,6 +87,7 @@ public class ManfredUseCard : ManfredStates.ManfredState0Param
   {
     deathImpulseSource.GenerateImpulse();
     manfred.effectsCanvas.DoWhiteFlash(0.5f);
+    manfred.effectsAudioSource.PlayOneShot(deathCardSoundEffect);
 
     TrashEnemy[] enemies = (TrashEnemy[])Object.FindObjectsOfType(typeof(TrashEnemy));
     for (int i = 0; i < enemies.Length; i++)
@@ -91,6 +98,7 @@ public class ManfredUseCard : ManfredStates.ManfredState0Param
 
   private void UseLover()
   {
+    manfred.effectsAudioSource.PlayOneShot(loveCardSoundEffect);
     GameObject.Instantiate(loverEffectPrototype, manfred.loverEffectSourceTransform.position, Quaternion.identity);
   }
 }
