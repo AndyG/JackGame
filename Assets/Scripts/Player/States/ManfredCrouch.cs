@@ -13,7 +13,7 @@ public class ManfredCrouch : ManfredStates.ManfredState0Param
     if (manfred.playerInput.GetDidPressJumpBuffered())
     {
       manfred.velocity = jumpPower * Vector2.up;
-      manfred.fsm.ChangeState(manfred.stateAirborne, manfred.stateAirborne);
+      manfred.fsm.ChangeState(manfred.stateAirborne, manfred.stateAirborne, false);
       return;
     }
 

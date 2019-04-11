@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Prime31;
 
-public class ManfredAirborne : ManfredStates.ManfredState0Param
+public class ManfredAirborne : ManfredStates.ManfredState1Param<bool>
 {
 
   private float airborneFloatingThreshold = 7;
@@ -10,8 +11,29 @@ public class ManfredAirborne : ManfredStates.ManfredState0Param
   [SerializeField]
   private GameObject landEffect;
 
+  [SerializeField]
+  private float coyoteJumpPower;
+  [SerializeField]
+  private float coyoteTime;
+
+  private float currentCoyoteTime;
+
+  public override void Enter(bool allowCoyoteTime) {
+    if (allowCoyoteTime) {
+      currentCoyoteTime = 0f;
+    } else {
+      currentCoyoteTime = coyoteTime + 1;
+    }
+  }
+
   public override void Tick()
   {
+    currentCoyoteTime += Time.deltaTime;
+
+    if (currentCoyoteTime <= coyoteTime && manfred.playerInput.GetDidPressJumpBuffered()) {
+      manfred.velocity.y = coyoteJumpPower;
+    }
+
     if (manfred.velocity.y > manfred.minJumpVelocity && manfred.playerInput.GetDidReleaseJump())
     {
       manfred.velocity.y = manfred.minJumpVelocity;
@@ -51,7 +73,7 @@ public class ManfredAirborne : ManfredStates.ManfredState0Param
     }
 
     // check if hit ground
-    PlayerController.CollisionInfo collisions = manfred.controller.GetCollisions();
+    CharacterController2D.CharacterCollisionState2D collisions = manfred.controller.collisionState;
     if (collisions.below)
     {
       manfred.velocity.y = 0f;

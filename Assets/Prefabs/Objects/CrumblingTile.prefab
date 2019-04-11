@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 1523901008622103676}
   - component: {fileID: 1523901008622103677}
   - component: {fileID: 1523901008622103678}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CrumblingTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}

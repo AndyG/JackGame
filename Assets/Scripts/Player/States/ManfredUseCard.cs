@@ -58,7 +58,7 @@ public class ManfredUseCard : ManfredStates.ManfredState0Param
 
   private void TransitionAway()
   {
-    manfred.fsm.ChangeState(manfred.stateAirborne, manfred.stateAirborne);
+    manfred.fsm.ChangeState(manfred.stateAirborne, manfred.stateAirborne, false);
   }
 
   private void ConsumeCard()

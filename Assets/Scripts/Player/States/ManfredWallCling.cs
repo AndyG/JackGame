@@ -89,7 +89,7 @@ public class ManfredWallCling : ManfredStates.ManfredState1Param<bool>
 
     manfred.velocity = velocity;
     manfred.lockAirborneMovementTime = lockMovementAfterJumpTime;
-    manfred.fsm.ChangeState(manfred.stateAirborne, manfred.stateAirborne);
+    manfred.fsm.ChangeState(manfred.stateAirborne, manfred.stateAirborne, false);
     SpawnEffect();
   }
 

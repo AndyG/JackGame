@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using Prime31;
+
 public class ManfredGrounded : ManfredStates.ManfredState0Param
 {
 
@@ -39,7 +41,7 @@ public class ManfredGrounded : ManfredStates.ManfredState0Param
     {
       SpawnJumpEffect();
       manfred.velocity.y = jumpPower;
-      manfred.fsm.ChangeState(manfred.stateAirborne, manfred.stateAirborne);
+      manfred.fsm.ChangeState(manfred.stateAirborne, manfred.stateAirborne, false);
       return;
     }
 
@@ -84,10 +86,9 @@ public class ManfredGrounded : ManfredStates.ManfredState0Param
     }
     manfred.controller.Move(manfred.velocity * Time.deltaTime);
 
-    PlayerController.CollisionInfo collisionInfo = manfred.controller.GetCollisions();
-    if (!collisionInfo.below)
+    if (!manfred.controller.isGrounded)
     {
-      manfred.fsm.ChangeState(manfred.stateAirborne, manfred.stateAirborne);
+      manfred.fsm.ChangeState(manfred.stateAirborne, manfred.stateAirborne, true);
     }
   }
 

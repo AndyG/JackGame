@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Prime31;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(HitboxManager))]
@@ -13,7 +14,7 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   public Animator animator;
   public AnimationManager animationManager;
   public PlayerInput playerInput;
-  public PlayerController controller;
+  public CharacterController2D controller;
   public GroundTypeDetector spikeDetector;
 
   [System.NonSerialized]
@@ -78,7 +79,7 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
   void Start()
   {
     animator = GetComponent<Animator>();
-    controller = GetComponent<PlayerController>();
+    controller = GetComponent<CharacterController2D>();
     hitboxManager = GetComponent<HitboxManager>();
     effectsAudioSource = GetComponent<AudioSource>();
     sceneTransitioner = (SceneTransitioner)FindObjectOfType(typeof(SceneTransitioner));
@@ -90,7 +91,7 @@ public class Manfred : MonoBehaviour, AnimationManager.AnimationProvider, Hurtab
 
     fsm = new FSM<Manfred, ManfredStates.IManfredState>(this);
 
-    fsm.ChangeState(stateAirborne, stateAirborne);
+    fsm.ChangeState(stateAirborne, stateAirborne, false);
   }
 
   void Update()
