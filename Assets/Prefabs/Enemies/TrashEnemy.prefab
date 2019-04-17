@@ -273,11 +273,13 @@ MonoBehaviour:
   state: 0
   timeTilAttack: 1
   dizzyTime: 2
-  hitFlashMaterial: {fileID: 2100000, guid: 83738edfd3d67d74089ba1f3f90ebc1b, type: 2}
+  hitFlashMaterial: {fileID: 2100000, guid: d90f16d84f261d64fa874ef9f1ce4f81, type: 2}
   siphonSourcePosition: {fileID: 6741024115570024758}
   spawnDropletCooldown: 0.05
   dropletPrototype: {fileID: 6151072520936868065, guid: 42e2268d7d3b9e54381e183477951a34,
     type: 3}
+  health: 60
+  isBoss: 0
 --- !u!114 &2255171411911735150
 MonoBehaviour:
   m_ObjectHideFlags: 0
