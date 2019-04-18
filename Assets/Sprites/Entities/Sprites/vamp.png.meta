@@ -1,24 +1,54 @@
 fileFormatVersion: 2
-guid: 91bd16618496e194e98222d4a917b649
+guid: 07d66fd5726a9154a93f3be8134b0805
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: vamp_0
-    21300002: vamp_1
-    21300004: vamp_2
-    21300006: vamp_3
-    21300008: vamp_4
-    21300010: vamp_5
-    21300012: vamp_6
-    21300014: vamp_7
-    21300016: vamp_8
-    21300018: vamp_9
-    21300020: vamp_10
-    21300022: vamp_11
-    21300024: vamp_12
-    21300026: vamp_13
-    21300028: vamp_14
+  internalIDToNameTable:
+  - first:
+      213: 3340846063471368462
+    second: vamp 0
+  - first:
+      213: -6068532145871942259
+    second: vamp 1
+  - first:
+      213: 7586294182161626949
+    second: vamp 2
+  - first:
+      213: 7895094102347403910
+    second: vamp 3
+  - first:
+      213: -7479222639628361584
+    second: vamp 4
+  - first:
+      213: 1458220205644190361
+    second: vamp 5
+  - first:
+      213: 2437028829671529662
+    second: vamp 6
+  - first:
+      213: -6455090198818279449
+    second: vamp 7
+  - first:
+      213: -1895402625166792327
+    second: vamp 8
+  - first:
+      213: 2772126033697088589
+    second: vamp 9
+  - first:
+      213: -5253063338857577466
+    second: vamp 10
+  - first:
+      213: 8733961566294838569
+    second: vamp 11
+  - first:
+      213: -6799032294189843598
+    second: vamp 12
+  - first:
+      213: -5059702887887950614
+    second: vamp 13
+  - first:
+      213: -5387131333422415999
+    second: vamp 14
   externalObjects: {}
-  serializedVersion: 9
+  serializedVersion: 10
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -75,23 +105,12 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 2
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
-    crunchedCompression: 1
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 1
+    crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
@@ -99,301 +118,316 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: vamp_0
+      name: vamp 0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 213
         width: 50
         height: 43
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 713a945ee9596c54cbb9915a6d9450b8
+      spriteID: 32d0f5543ac58384dbf8ce5c50c0f48d
+      internalID: 3340846063471368462
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: vamp_1
+      name: vamp 1
       rect:
         serializedVersion: 2
         x: 50
-        y: 0
+        y: 213
         width: 50
         height: 43
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 0abcc499b7fc9a54bbe4975c3dc5901f
+      spriteID: e1b4964ebd9e6384b9e883727371bb44
+      internalID: -6068532145871942259
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: vamp_2
+      name: vamp 2
       rect:
         serializedVersion: 2
         x: 100
-        y: 0
+        y: 213
         width: 50
         height: 43
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 70a613ec5dc77c34fa1a25715956d679
+      spriteID: 742ff78e1053798448fec3abba03e1b9
+      internalID: 7586294182161626949
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: vamp_3
+      name: vamp 3
       rect:
         serializedVersion: 2
         x: 150
-        y: 0
+        y: 213
         width: 50
         height: 43
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: a4cae9aca873d4c4dab2cd84fb6f24af
+      spriteID: 7eb8d50024a3ca544b2c59fc1c76cfcd
+      internalID: 7895094102347403910
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: vamp_4
+      name: vamp 4
       rect:
         serializedVersion: 2
         x: 200
-        y: 0
+        y: 213
         width: 50
         height: 43
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: ef583a49b0fbb634ba04039fd81adede
+      spriteID: 1e1238a98e826004a91fd47ae575f122
+      internalID: -7479222639628361584
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: vamp_5
+      name: vamp 5
       rect:
         serializedVersion: 2
-        x: 250
-        y: 0
+        x: 0
+        y: 170
         width: 50
         height: 43
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 5ed3d5eca6ffb824a874e3d15e9571c9
+      spriteID: 1baa46811e4d40443a8b6f01eb34dced
+      internalID: 1458220205644190361
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: vamp_6
+      name: vamp 6
       rect:
         serializedVersion: 2
-        x: 300
-        y: 0
+        x: 50
+        y: 170
         width: 50
         height: 43
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: def830fd298e31642808a00231381cee
+      spriteID: f316af5c4dc006f4b9a0e53f10ae5661
+      internalID: 2437028829671529662
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: vamp_7
+      name: vamp 7
       rect:
         serializedVersion: 2
-        x: 350
-        y: 0
+        x: 100
+        y: 170
         width: 50
         height: 43
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 537b89121364ff74d8fea1f098b2595b
+      spriteID: c21b6838009ac0443a8c937b5d48b6d7
+      internalID: -6455090198818279449
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: vamp_8
+      name: vamp 8
       rect:
         serializedVersion: 2
-        x: 400
-        y: 0
+        x: 150
+        y: 170
         width: 50
         height: 43
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 3eb30b5fe22db9647abed7c17b2aa1e8
+      spriteID: 4f93ad4b7bd6e57488a0e150337e8ea8
+      internalID: -1895402625166792327
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: vamp_9
+      name: vamp 9
       rect:
         serializedVersion: 2
-        x: 450
-        y: 0
+        x: 200
+        y: 170
         width: 50
         height: 43
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 94479a355e1ce21479a1fd284a932f83
+      spriteID: f27358303dcb9314aa465265e5c28c56
+      internalID: 2772126033697088589
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: vamp_10
+      name: vamp 10
       rect:
         serializedVersion: 2
-        x: 500
-        y: 0
+        x: 0
+        y: 127
         width: 50
         height: 43
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: f89379f479100444085dcc07b52e25a6
+      spriteID: 8d7321c2782372b43b3456f5c7e92b32
+      internalID: -5253063338857577466
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: vamp_11
+      name: vamp 11
       rect:
         serializedVersion: 2
-        x: 550
-        y: 0
+        x: 50
+        y: 127
         width: 50
         height: 43
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 6b7c47fa3cf96744b8e6f229659e0a39
+      spriteID: 3d109143401e2b14e8cb944fb3a1f8d9
+      internalID: 8733961566294838569
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: vamp_12
+      name: vamp 12
       rect:
         serializedVersion: 2
-        x: 600
-        y: 0
+        x: 100
+        y: 127
         width: 50
         height: 43
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 9e95b07046179a5479bfb80b4027a09d
+      spriteID: 505d68653f5583943ba27c1bcc570a56
+      internalID: -6799032294189843598
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: vamp_13
+      name: vamp 13
       rect:
         serializedVersion: 2
-        x: 650
-        y: 0
+        x: 150
+        y: 127
         width: 50
         height: 43
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 4b349d8a99f066148ac3f2e5cb11c9d6
+      spriteID: bc991ce694db80a42a2f9a357c394527
+      internalID: -5059702887887950614
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: vamp_14
+      name: vamp 14
       rect:
         serializedVersion: 2
-        x: 700
-        y: 0
+        x: 200
+        y: 127
         width: 50
         height: 43
       alignment: 7
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: cd0f25c83de7af44d9a41a943d77528d
+      spriteID: f0b71eeafcbeb8c439ff89d421c399ef
+      internalID: -5387131333422415999
       vertices: []
       indices: 
       edges: []
@@ -401,11 +435,13 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 11fda00b08377434d840c9e052a44e33
+    spriteID: 070f7f6a219273e4d916f3af86105c86
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
+    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
