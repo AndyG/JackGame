@@ -6,8 +6,6 @@ using Prime31;
 public class ManfredAirborne : ManfredStates.ManfredState1Param<bool>
 {
 
-  private float airborneFloatingThreshold = 7;
-
   [SerializeField]
   private GameObject landEffect;
 
@@ -18,10 +16,14 @@ public class ManfredAirborne : ManfredStates.ManfredState1Param<bool>
 
   private float currentCoyoteTime;
 
-  public override void Enter(bool allowCoyoteTime) {
-    if (allowCoyoteTime) {
+  public override void Enter(bool allowCoyoteTime)
+  {
+    if (allowCoyoteTime)
+    {
       currentCoyoteTime = 0f;
-    } else {
+    }
+    else
+    {
       currentCoyoteTime = coyoteTime + 1;
     }
   }
@@ -30,7 +32,8 @@ public class ManfredAirborne : ManfredStates.ManfredState1Param<bool>
   {
     currentCoyoteTime += Time.deltaTime;
 
-    if (currentCoyoteTime <= coyoteTime && manfred.playerInput.GetDidPressJumpBuffered()) {
+    if (currentCoyoteTime <= coyoteTime && manfred.playerInput.GetDidPressJumpBuffered())
+    {
       manfred.velocity.y = coyoteJumpPower;
     }
 
@@ -93,7 +96,8 @@ public class ManfredAirborne : ManfredStates.ManfredState1Param<bool>
     }
   }
 
-  private void SpawnLandEffect() {
+  private void SpawnLandEffect()
+  {
     GameObject effect = GameObject.Instantiate(landEffect, manfred.jumpEffectTransform.position, Quaternion.identity);
   }
 
